@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    =========================================================================
+    File         : research.html
+    Description  : Research overview - DESI, Galaxy Evolution, Quasar Physics
+    Repository   : radioastronomyio-website
+    Author       : VintageDon (https://github.com/vintagedon)
+    Created      : 2025-12-28
+    Phase        : Phase 2a
+    =========================================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESI Research | RadioAstronomy.io</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="DESI Research | RadioAstronomy.io">
+    <meta property="og:description" content="Galaxy evolution, quasar physics, and ML-driven spectral analysis using DESI Data Release 1.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://radioastronomy.io/research.html">
+    <meta property="og:image" content="https://radioastronomy.io/assets/radioastronomyio-research-hero-image.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DESI Research | RadioAstronomy.io">
+    <meta name="twitter:description" content="Galaxy evolution, quasar physics, and ML-driven spectral analysis using DESI Data Release 1.">
+    <!-- <meta name="twitter:image" content="https://radioastronomy.io/assets/radioastronomyio-research-hero-image.jpg"> -->
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/radioastronomy-logo-200x200.jpg" type="image/jpeg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "RadioAstronomy.io",
+      "url": "https://radioastronomy.io",
+      "logo": "https://radioastronomy.io/assets/radioastronomy-logo-200x200.jpg"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ResearchProject",
+      "name": "DESI Research",
+      "description": "Galaxy evolution, quasar physics, and ML-driven spectral analysis using DESI Data Release 1.",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "RadioAstronomy.io"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/radioastronomy-logo-200x200.jpg" alt="RadioAstronomy.io Logo">
+                RadioAstronomy.io
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                &#9776;
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="research.html" class="nav-link active">Research</a></li>
+                <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Projects &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="repos/desi-cosmic-void-galaxies.html" class="dropdown-item">DESI Cosmic Void Galaxies</a>
+                        <a href="repos/desi-qso-anomaly-detection.html" class="dropdown-item">DESI QSO Anomaly Detection</a>
+                        <a href="repos/desi-quasar-outflows.html" class="dropdown-item">DESI Quasar Outflows</a>
+                        <a href="repos/rbh1-validation.html" class="dropdown-item">RBH-1 Validation</a>
+                        <a href="repos/year-of-code-2026.html" class="dropdown-item">Year of Code 2026</a>
+                        <a href="repos/proxmox-astronomy-lab.html" class="dropdown-item">Proxmox Astronomy Lab</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="assets/radioastronomyio-research-hero-image.jpg" alt="DESI Research" class="hero-image">
+            <div class="container hero-content animate-fade-in">
+                <h1 class="hero-title">DESI Research</h1>
+                <p class="hero-subtitle">Galaxy evolution, quasar physics, and ML-driven spectral analysis</p>
+            </div>
+        </section>
+
+        <!-- Research Focus -->
+        <section class="container">
+            <div class="animate-fade-in">
+                <p class="lead">Our research uses DESI Data Release 1 — the largest spectroscopic survey to date — to investigate fundamental questions about galaxy evolution and quasar physics. We build Analysis-Ready Datasets (ARDs) that transform raw survey data into enriched, science-ready products.</p>
+            </div>
+            
+            <div id="toc-placeholder"></div>
+
+            <h2>Active Research Areas</h2>
+            
+            <div class="research-area mb-3">
+                <h3>1. Environmental Quenching in Cosmic Voids</h3>
+                <p>Cosmic voids are vast underdense regions — the "bubbles" between filaments of the cosmic web. Galaxies in voids experience minimal environmental interactions, making them ideal laboratories for studying intrinsic evolution. We compare void galaxies to wall galaxies to disentangle "nature" (mass-driven) from "nurture" (environment-driven) quenching mechanisms.</p>
+            </div>
+
+            <div class="research-area mb-3">
+                <h3>2. AGN Feedback and Outflow Energetics</h3>
+                <p>Quasar-driven outflows may regulate galaxy growth through AGN feedback. We use semi-automated spectral fitting and Cloudy photoionization modeling to measure outflow properties at scale — distances, mass outflow rates, and kinetic luminosities — creating the first comprehensive catalog of quasar outflow energetics.</p>
+            </div>
+
+            <div class="research-area mb-3">
+                <h3>3. ML-Driven Anomaly Detection</h3>
+                <p>With 1.6 million quasar spectra, systematic outlier detection reveals rare objects that manual inspection would miss. We use autoencoder architectures to identify statistical anomalies that may represent unusual accretion physics, rare evolutionary phases, or potentially new source types.</p>
+            </div>
+        </section>
+
+        <!-- Value-Added Catalogs -->
+        <section class="container">
+            <h2>Value-Added Catalogs (VACs)</h2>
+            <p>Our ARD integrates 9 DESI DR1 Value-Added Catalogs:</p>
+
+            <div class="row" style="display: flex; gap: var(--spacing-lg); flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Galaxy VACs</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>VAC</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>FastSpecFit</td>
+                                    <td>Stellar continuum + emission lines</td>
+                                </tr>
+                                <tr>
+                                    <td>PROVABGS</td>
+                                    <td>Bayesian SED fitting with posteriors</td>
+                                </tr>
+                                <tr>
+                                    <td>DESIVAST</td>
+                                    <td>Cosmic void classifications (4 algorithms)</td>
+                                </tr>
+                                <tr>
+                                    <td>Gfinder</td>
+                                    <td>Halo-based group catalog</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>QSO VACs</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>VAC</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>AGN/QSO</td>
+                                    <td>Spectral + IR classification</td>
+                                </tr>
+                                <tr>
+                                    <td>CIV Absorber</td>
+                                    <td>Intervening CIV systems</td>
+                                </tr>
+                                <tr>
+                                    <td>MgII Absorber</td>
+                                    <td>Intervening MgII systems</td>
+                                </tr>
+                                <tr>
+                                    <td>QMassIron</td>
+                                    <td>Black hole masses</td>
+                                </tr>
+                                <tr>
+                                    <td>Stellar Mass/EmLine</td>
+                                    <td>CIGALE masses + emission lines</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology -->
+        <section class="container">
+            <h2>Methodology</h2>
+            <div class="methodology-box" style="background-color: var(--color-surface); padding: var(--spacing-lg); border-radius: var(--border-radius); border-left: 4px solid var(--color-primary);">
+                <p>We follow a three-layer enrichment model:</p>
+                <ol style="margin-left: 1.5rem;">
+                    <li class="mb-1"><strong>Foundation Layer:</strong> Unified catalog with cross-match linkage, environmental classifications</li>
+                    <li class="mb-1"><strong>Physics Layer:</strong> Derived quantities — Lick indices, pPXF kinematics, SED posteriors</li>
+                    <li class="mb-1"><strong>AI/Embeddings Layer:</strong> Neural spectral embeddings, similarity metrics</li>
+                </ol>
+            </div>
+            <p style="margin-top: var(--spacing-md);">
+                This computation is performed on our dedicated cluster. <a href="infrastructure.html">View Infrastructure Details &rarr;</a>
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links mb-2">
+                <a href="https://github.com/radioastronomyio" target="_blank" rel="noopener">GitHub Organization</a>
+                <a href="https://github.com/radioastronomyio/radioastronomyio-website" target="_blank" rel="noopener">Website Repo</a>
+                <a href="sitemap.xml">Sitemap</a>
+            </div>
+            <p class="footer-copyright">
+                &copy; 2025 RadioAstronomy.io. Licensed under MIT.<br>
+                Computational astronomy research through open data, reproducible workflows, and enterprise infrastructure.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

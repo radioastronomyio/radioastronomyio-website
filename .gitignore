@@ -20,14 +20,12 @@ config.local.*
 *-pending.md
 staging/
 
+
 # ----------------------------------------------------------------------------
 # IDE & EDITOR
 # ----------------------------------------------------------------------------
 .internal-files/
-.vscode/
 .idea/
-.kilocode/
-.kiro/
 .markdownlint.json
 cspell.json
 *.swp
@@ -259,4 +257,4 @@ temp/
 scratch/
 local/
 .local/
-*.local
+*.local!scratch/antigravity/

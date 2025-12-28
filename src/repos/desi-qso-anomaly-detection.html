@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    =========================================================================
+    File         : desi-qso-anomaly-detection.html
+    Description  : Repository page for DESI QSO Anomaly Detection
+    Repository   : radioastronomyio-website
+    Author       : VintageDon (https://github.com/vintagedon)
+    Created      : 2025-12-28
+    Phase        : Phase 2a
+    =========================================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESI-QAD | RadioAstronomy.io</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="DESI-QAD | RadioAstronomy.io">
+    <meta property="og:description" content="Quasar Anomaly Detection — ML-driven outlier discovery in 1.6M spectra.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://radioastronomy.io/repos/desi-qso-anomaly-detection.html">
+    <meta property="og:image" content="https://radioastronomy.io/assets/desi-quasar-anomoly-detection-repo-banner.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DESI-QAD | RadioAstronomy.io">
+    <meta name="twitter:description" content="Quasar Anomaly Detection — ML-driven outlier discovery in 1.6M spectra.">
+    <!-- <meta name="twitter:image" content="https://radioastronomy.io/assets/desi-quasar-anomoly-detection-repo-banner.png"> -->
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="../assets/radioastronomy-logo-200x200.jpg" type="image/jpeg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "DESI QSO Anomaly Detection",
+      "codeRepository": "https://github.com/radioastronomyio/desi-qso-anomaly-detection",
+      "author": {
+        "@type": "Organization",
+        "name": "RadioAstronomy.io"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/radioastronomy-logo-200x200.jpg" alt="RadioAstronomy.io Logo">
+                RadioAstronomy.io
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                &#9776;
+            </button>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../research.html" class="nav-link">Research</a></li>
+                <li><a href="../infrastructure.html" class="nav-link">Infrastructure</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link active">Projects &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="desi-cosmic-void-galaxies.html" class="dropdown-item">DESI Cosmic Void Galaxies</a>
+                        <a href="desi-qso-anomaly-detection.html" class="dropdown-item">DESI QSO Anomaly Detection</a>
+                        <a href="desi-quasar-outflows.html" class="dropdown-item">DESI Quasar Outflows</a>
+                        <a href="rbh1-validation.html" class="dropdown-item">RBH-1 Validation</a>
+                        <a href="year-of-code-2026.html" class="dropdown-item">Year of Code 2026</a>
+                        <a href="proxmox-astronomy-lab.html" class="dropdown-item">Proxmox Astronomy Lab</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="../assets/desi-quasar-anomoly-detection-repo-banner.png" alt="DESI QSO Anomaly Detection" class="hero-image">
+            <div class="container hero-content animate-fade-in">
+                <h1 class="hero-title">DESI-QAD</h1>
+                <p class="hero-subtitle">Quasar Anomaly Detection — ML-driven outlier discovery in 1.6M spectra</p>
+                <div class="mt-3">
+                    <a href="https://github.com/radioastronomyio/desi-qso-anomaly-detection" target="_blank" class="btn btn-primary">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview -->
+        <section class="container">
+            <p class="lead">DESI-QAD uses unsupervised anomaly detection to identify unusual quasar spectra within DESI Data Release 1. By leveraging autoencoder architectures, we discover statistical outliers that may represent rare physical phenomena, unusual accretion physics, or potentially new classes of astronomical objects.</p>
+
+            <h2>Scientific Motivation</h2>
+            <p>While the average quasar spectrum is well-understood, the full diversity of these objects remains an active area of research. Outliers can reveal:</p>
+            <ul>
+                <li>Extreme physical properties (unusual accretion rates, metallicities)</li>
+                <li>Rare evolutionary phases or transient events</li>
+                <li>Complex absorption or dust reddening</li>
+                <li>Misclassified objects or new source types</li>
+            </ul>
+
+            <h2>Approach</h2>
+            <ol>
+                <li>Train autoencoder on majority of spectra to learn "normal" features</li>
+                <li>Calculate reconstruction error as anomaly score</li>
+                <li>Rank spectra by anomaly score to identify outliers</li>
+                <li>Visual inspection and cross-matching for validation</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links mb-2">
+                <a href="https://github.com/radioastronomyio" target="_blank" rel="noopener">GitHub Organization</a>
+                <a href="https://github.com/radioastronomyio/radioastronomyio-website" target="_blank" rel="noopener">Website Repo</a>
+                <a href="../sitemap.xml">Sitemap</a>
+            </div>
+            <p class="footer-copyright">
+                &copy; 2025 RadioAstronomy.io. Licensed under MIT.<br>
+                Computational astronomy research through open data, reproducible workflows, and enterprise infrastructure.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

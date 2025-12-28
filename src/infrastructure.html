@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    =========================================================================
+    File         : infrastructure.html
+    Description  : Infrastructure overview - Proxmox Astronomy Lab
+    Repository   : radioastronomyio-website
+    Author       : VintageDon (https://github.com/vintagedon)
+    Created      : 2025-12-28
+    Phase        : Phase 2a
+    =========================================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure | RadioAstronomy.io</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Infrastructure | RadioAstronomy.io">
+    <meta property="og:description" content="Enterprise-grade astronomical computing on a 7-node Proxmox cluster.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://radioastronomy.io/infrastructure.html">
+    <meta property="og:image" content="https://radioastronomy.io/assets/proxmox-astronomy-lab-infrastructure-infographic.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Infrastructure | RadioAstronomy.io">
+    <meta name="twitter:description" content="Enterprise-grade astronomical computing on a 7-node Proxmox cluster.">
+    <!-- <meta name="twitter:image" content="https://radioastronomy.io/assets/proxmox-astronomy-lab-infrastructure-infographic.png"> -->
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/radioastronomy-logo-200x200.jpg" type="image/jpeg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "RadioAstronomy.io",
+      "url": "https://radioastronomy.io",
+      "logo": "https://radioastronomy.io/assets/radioastronomy-logo-200x200.jpg"
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/radioastronomy-logo-200x200.jpg" alt="RadioAstronomy.io Logo">
+                RadioAstronomy.io
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                &#9776;
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="infrastructure.html" class="nav-link active">Infrastructure</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Projects &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="repos/desi-cosmic-void-galaxies.html" class="dropdown-item">DESI Cosmic Void Galaxies</a>
+                        <a href="repos/desi-qso-anomaly-detection.html" class="dropdown-item">DESI QSO Anomaly Detection</a>
+                        <a href="repos/desi-quasar-outflows.html" class="dropdown-item">DESI Quasar Outflows</a>
+                        <a href="repos/rbh1-validation.html" class="dropdown-item">RBH-1 Validation</a>
+                        <a href="repos/year-of-code-2026.html" class="dropdown-item">Year of Code 2026</a>
+                        <a href="repos/proxmox-astronomy-lab.html" class="dropdown-item">Proxmox Astronomy Lab</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="assets/infrastructure-repo-banner.jpg" alt="Proxmox Astronomy Lab Infrastructure" class="hero-image">
+            <div class="container hero-content animate-fade-in">
+                <h1 class="hero-title">Research Platform</h1>
+                <p class="hero-subtitle">Enterprise-grade astronomical computing on a 7-node Proxmox cluster</p>
+            </div>
+        </section>
+
+        <!-- Infrastructure Infographic -->
+        <section class="container">
+            <h2 class="text-center">Platform Architecture</h2>
+            <div class="text-center">
+                <img src="assets/proxmox-astronomy-lab-infrastructure-infographic.png" alt="Proxmox Astronomy Lab Architecture Diagram" class="hero-image" style="max-width: 900px; margin: 0 auto;">
+            </div>
+        </section>
+
+        <!-- Platform Overview -->
+        <section class="container">
+            <p class="lead">The Proxmox Astronomy Lab is a production-scale computing platform built on a 7-node Proxmox VE cluster with hybrid RKE2 Kubernetes and strategic VM architecture. We're demonstrating that sophisticated astronomical computing doesn't require massive institutional resources — just smart engineering and open science principles.</p>
+
+            <h2 class="mt-3">Cluster Specifications</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nodes</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td>Total Cores</td>
+                            <td>144</td>
+                        </tr>
+                        <tr>
+                            <td>Total RAM</td>
+                            <td>704 GB</td>
+                        </tr>
+                        <tr>
+                            <td>Total NVMe</td>
+                            <td>26 TB</td>
+                        </tr>
+                        <tr>
+                            <td>Network Fabric</td>
+                            <td>10G LACP per node</td>
+                        </tr>
+                        <tr>
+                            <td>GPU</td>
+                            <td>RTX A4000 16GB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Inventories (Collapsible) -->
+        <section class="container">
+            <h2>Node Inventory</h2>
+            <div class="collapsible">
+                <div class="collapsible-trigger">View Node Specification Details</div>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Node</th>
+                                        <th>CPU</th>
+                                        <th>Cores</th>
+                                        <th>RAM</th>
+                                        <th>Role</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>node01</td><td>i9-12900H</td><td>20</td><td>96 GB</td><td>Compute (K8s)</td></tr>
+                                    <tr><td>node02</td><td>i5-12600H</td><td>16</td><td>96 GB</td><td>Light compute + storage</td></tr>
+                                    <tr><td>node03</td><td>i9-12900H</td><td>20</td><td>96 GB</td><td>Compute (K8s)</td></tr>
+                                    <tr><td>node04</td><td>i9-12900H</td><td>20</td><td>96 GB</td><td>Compute (K8s)</td></tr>
+                                    <tr><td>node05</td><td>i5-12600H</td><td>16</td><td>96 GB</td><td>Light compute + storage</td></tr>
+                                    <tr><td>node06</td><td>i9-13900H</td><td>20</td><td>96 GB</td><td>Heavy compute (databases)</td></tr>
+                                    <tr><td>node07</td><td>AMD 5950X</td><td>32</td><td>128 GB</td><td>GPU compute</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>VM Inventory</h2>
+            <div class="collapsible">
+                <div class="collapsible-trigger">View Virtual Machine Details</div>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>VM</th>
+                                        <th>vCPU</th>
+                                        <th>RAM</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>radio-k8s01</td><td>12</td><td>48G</td><td>Kubernetes primary</td></tr>
+                                    <tr><td>radio-k8s02</td><td>12</td><td>48G</td><td>Kubernetes worker</td></tr>
+                                    <tr><td>radio-k8s03</td><td>12</td><td>48G</td><td>Kubernetes worker</td></tr>
+                                    <tr><td>radio-gpu01</td><td>12</td><td>48G</td><td>GPU worker (A4000)</td></tr>
+                                    <tr><td>radio-pgsql01</td><td>8</td><td>32G</td><td>Research PostgreSQL</td></tr>
+                                    <tr><td>radio-pgsql02</td><td>4</td><td>16G</td><td>Application PostgreSQL</td></tr>
+                                    <tr><td>radio-neo4j01</td><td>6</td><td>24G</td><td>Graph database</td></tr>
+                                    <tr><td>radio-fs02</td><td>4</td><td>6G</td><td>SMB file server</td></tr>
+                                    <tr><td>radio-agents01</td><td>8</td><td>32G</td><td>AI agents, monitoring</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Highlights -->
+        <section class="container">
+            <h2>Architecture Highlights</h2>
+            <ul>
+                <li><strong>Hybrid K8s + VM:</strong> RKE2 for dynamic ML workloads, strategic VMs for databases</li>
+                <li><strong>PostgreSQL:</strong> Materialization engine for catalog joins and derived computations</li>
+                <li><strong>GPU Compute:</strong> RTX A4000 for ML training and inference</li>
+                <li><strong>10G Network:</strong> 2x10G LACP per node for high-bandwidth data movement</li>
+            </ul>
+
+            <h2 class="mt-3">Data Pipeline</h2>
+            <blockquote>
+                PostgreSQL serves as the materialization engine where VAC joins and derived computations occur. Final ARD products are exported to Parquet for distribution. The pipeline manages ~32GB of catalog data and ~108GB of spectral tiles in Parquet format.
+            </blockquote>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links mb-2">
+                <a href="https://github.com/radioastronomyio" target="_blank" rel="noopener">GitHub Organization</a>
+                <a href="https://github.com/radioastronomyio/radioastronomyio-website" target="_blank" rel="noopener">Website Repo</a>
+                <a href="sitemap.xml">Sitemap</a>
+            </div>
+            <p class="footer-copyright">
+                &copy; 2025 RadioAstronomy.io. Licensed under MIT.<br>
+                Computational astronomy research through open data, reproducible workflows, and enterprise infrastructure.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

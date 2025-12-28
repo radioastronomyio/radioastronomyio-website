@@ -1,0 +1,805 @@
+/**
+ * ==========================================================================
+ * File         : styles.css
+ * Description  : Core stylesheet for RadioAstronomy.io website
+ * Repository   : radioastronomyio-website
+ * Author       : VintageDon (https://github.com/vintagedon)
+ * Created      : 2025-12-28
+ * Phase        : Phase 2a
+ * ==========================================================================
+ *
+ * TABLE OF CONTENTS
+ * 1. Custom Properties (CSS Variables)
+ * 2. Reset / Base Styles
+ * 3. Typography
+ * 4. Layout
+ * 5. Navigation
+ * 6. Hero Sections
+ * 7. Cards
+ * 8. Tables
+ * 9. Buttons
+ * 10. Footer
+ * 11. Utilities
+ * 12. Responsive
+ * 13. Dark Mode
+ * 14. Animations
+ * 15. Components (Lightbox, Collapsibles)
+ *
+ * ==========================================================================
+ */
+
+/* ==========================================================================
+   1. Custom Properties
+   ========================================================================== */
+
+:root {
+    /* Colors - Light Mode */
+    --color-primary: #5B8FAE;       /* Steel Blue */
+    --color-secondary: #E8A87C;     /* Coral/Salmon */
+    --color-text: #2C3E50;          /* Dark Navy */
+    --color-text-muted: #6C757D;    /* Soft Gray */
+    --color-background: #F5F5F0;    /* Cream/Graph Paper */
+    --color-surface: #FFFFFF;       /* White */
+    --color-grid: #E0DDD5;          /* Light Grid */
+    --color-border: #E0E0E0;
+
+    /* Typography */
+    --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: 'SF Mono', Monaco, 'Cascadia Code', Consolas, 'Courier New', monospace;
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 4rem;
+    --container-width: 1400px;
+    --header-height: 70px;
+
+    /* Borders */
+    --border-radius: 6px;
+    --border-radius-lg: 12px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+}
+
+/* Dark Mode Colors (Phase 2b Preparation) */
+.dark-mode {
+    --color-primary: #5B8FAE;
+    --color-secondary: #E8A87C;
+    --color-text: #E8E8E8;
+    --color-text-muted: #A0A0A0;
+    --color-background: #1A1A2E;
+    --color-surface: #16213E;
+    --color-grid: #2A2A40;
+    --color-border: #2A2A40;
+}
+
+/* ==========================================================================
+   2. Reset / Base Styles
+   ========================================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+    background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-attachment: fixed; /* Parallax-like fix for background */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-secondary);
+}
+
+/* ==========================================================================
+   3. Typography
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-primary);
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+    font-weight: 700;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; margin-top: var(--spacing-lg); }
+h3 { font-size: 1.5rem; margin-top: var(--spacing-md); }
+
+p {
+    margin-bottom: var(--spacing-md);
+}
+
+code, pre {
+    font-family: var(--font-mono);
+}
+
+blockquote {
+    border-left: 4px solid var(--color-secondary);
+    padding-left: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   4. Layout
+   ========================================================================== */
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+main {
+    padding-top: var(--header-height); /* Offset for fixed header */
+}
+
+section {
+    padding: var(--spacing-lg) 0;
+}
+
+/* ==========================================================================
+   5. Navigation
+   ========================================================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: rgba(255, 255, 255, 0.95); /* Light mode default */
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+    z-index: 1000;
+    transition: background-color var(--transition-normal);
+}
+
+.dark-mode .navbar {
+    background-color: rgba(22, 33, 62, 0.95);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 var(--spacing-lg);
+}
+
+.nav-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.nav-brand img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--spacing-lg);
+    list-style: none;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--color-primary);
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-surface);
+    min-width: 250px;
+    box-shadow: var(--shadow-md);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm) 0;
+    z-index: 1001;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-item {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--color-text);
+    transition: background-color var(--transition-fast);
+}
+
+.dropdown-item:hover {
+    background-color: var(--color-background);
+    color: var(--color-primary);
+}
+
+/* Mobile Toggle */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   6. Hero Sections
+   ========================================================================== */
+
+.hero {
+    position: relative;
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    overflow: hidden;
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-image {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    cursor: zoom-in; /* For lightbox */
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: var(--spacing-md) auto 0;
+    padding: 0 var(--spacing-md);
+}
+
+.hero-title {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   7. Cards
+   ========================================================================== */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.card {
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-image {
+    height: 150px;
+    object-fit: cover;
+    width: 100%;
+    cursor: zoom-in;
+}
+
+.card-body {
+    padding: var(--spacing-md);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-primary);
+}
+
+.card-text {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    flex: 1;
+    margin-bottom: var(--spacing-md);
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-sm);
+    font-size: 0.875rem;
+}
+
+.status-badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-active { background-color: #d1fae5; color: #065f46; }
+.status-planned { background-color: #fce7f3; color: #9d174d; }
+.status-production { background-color: #dbeafe; color: #1e40af; }
+
+/* ==========================================================================
+   8. Tables
+   ========================================================================== */
+
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: var(--spacing-md);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--border-radius);
+}
+
+th, td {
+    text-align: left;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+th {
+    background-color: rgba(91, 143, 174, 0.1); /* Primary with opacity */
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   9. Buttons
+   ========================================================================== */
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #4a758f; /* Darker steel blue */
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.scroll-top {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background-color: var(--color-primary);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-md);
+    z-index: 999;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ==========================================================================
+   10. Footer
+   ========================================================================== */
+
+.footer {
+    background-color: var(--color-surface);
+    padding: var(--spacing-xl) 0;
+    margin-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.footer-links a {
+    margin: 0 var(--spacing-sm);
+}
+
+.footer-copyright {
+    margin-top: var(--spacing-md);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   11. Utilities
+   ========================================================================== */
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+
+/* Counters */
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    display: block;
+}
+
+.stat-label {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   12. Responsive
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --header-height: 60px;
+        --spacing-lg: 1.5rem;
+        --spacing-xl: 3rem;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-surface);
+        flex-direction: column;
+        padding: var(--spacing-md);
+        box-shadow: var(--shadow-md);
+        border-top: 1px solid var(--color-border);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        padding-left: var(--spacing-lg);
+        background-color: rgba(0,0,0,0.02);
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   13. Animations
+   ========================================================================== */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* ==========================================================================
+   15. Components
+   ========================================================================== */
+
+/* Lightbox */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-normal);
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-image {
+    max-width: 90%;
+    max-height: 90vh;
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--border-radius);
+    transform: scale(0.9);
+    transition: transform var(--transition-normal);
+}
+
+.lightbox-overlay.active .lightbox-image {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+/* Collapsibles */
+.collapsible-trigger {
+    width: 100%;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-md);
+    text-align: left;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text);
+}
+
+.collapsible-trigger:hover {
+    background-color: rgba(91, 143, 174, 0.05);
+}
+
+.collapsible-trigger::after {
+    content: '+';
+    font-size: 1.25rem;
+    font-weight: 400;
+    transition: transform var(--transition-fast);
+}
+
+.collapsible-trigger.active::after {
+    transform: rotate(45deg);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal);
+    background-color: var(--color-surface);
+    margin-bottom: var(--spacing-md);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.collapsible-content-inner {
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-top: none;
+}
+
+/* ==========================================================================
+   16. Phase 2b Additions
+   ========================================================================== */
+
+/* Dark Mode Toggle */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    color: var(--color-primary);
+    transform: rotate(15deg);
+}
+
+.dark-mode .theme-toggle .icon-moon {
+    display: none;
+}
+
+.theme-toggle .icon-sun {
+    display: none;
+}
+
+.dark-mode .theme-toggle .icon-sun {
+    display: block;
+}
+
+/* Sticky Navbar */
+.navbar.scrolled {
+    height: 60px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background-color: rgba(255, 255, 255, 0.98);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(22, 33, 62, 0.98);
+}
+
+/* Auto Table of Contents */
+.toc-container {
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+}
+
+.toc-title {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 0.5rem;
+}
+
+.toc-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.toc-item {
+    margin-bottom: 0.5rem;
+}
+
+.toc-item a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+    display: block;
+}
+
+.toc-item a:hover {
+    color: var(--color-primary);
+    transform: translateX(4px);
+}
+
+.toc-item.toc-h3 {
+    padding-left: 1.5rem;
+    font-size: 0.9rem;
+    border-left: 2px solid var(--color-border);
+    margin-left: 0.5rem;
+}
+
+.toc-item.toc-h3 a {
+    color: var(--color-text-muted);
+}
+
+/* GitHub Stats */
+.repo-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--color-border);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    =========================================================================
+    File         : desi-cosmic-void-galaxies.html
+    Description  : Repository page for DESI Cosmic Void Galaxies project
+    Repository   : radioastronomyio-website
+    Author       : VintageDon (https://github.com/vintagedon)
+    Created      : 2025-12-28
+    Phase        : Phase 2a
+    =========================================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESI Cosmic Void Galaxies | RadioAstronomy.io</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="DESI Cosmic Void Galaxies | RadioAstronomy.io">
+    <meta property="og:description" content="The first Analysis-Ready Dataset for astronomy — environmental quenching research as the proving ground.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://radioastronomy.io/repos/desi-cosmic-void-galaxies.html">
+    <meta property="og:image" content="https://radioastronomy.io/assets/desi-cosmic-voids-repo-banner.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DESI Cosmic Void Galaxies | RadioAstronomy.io">
+    <meta name="twitter:description" content="The first Analysis-Ready Dataset for astronomy — environmental quenching research as the proving ground.">
+    <!-- <meta name="twitter:image" content="https://radioastronomy.io/assets/desi-cosmic-voids-repo-banner.png"> -->
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="../assets/radioastronomy-logo-200x200.jpg" type="image/jpeg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "DESI Cosmic Void Galaxies",
+      "codeRepository": "https://github.com/radioastronomyio/desi-cosmic-void-galaxies",
+      "author": {
+        "@type": "Organization",
+        "name": "RadioAstronomy.io"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/radioastronomy-logo-200x200.jpg" alt="RadioAstronomy.io Logo">
+                RadioAstronomy.io
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                &#9776;
+            </button>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../research.html" class="nav-link">Research</a></li>
+                <li><a href="../infrastructure.html" class="nav-link">Infrastructure</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link active">Projects &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="desi-cosmic-void-galaxies.html" class="dropdown-item">DESI Cosmic Void Galaxies</a>
+                        <a href="desi-qso-anomaly-detection.html" class="dropdown-item">DESI QSO Anomaly Detection</a>
+                        <a href="desi-quasar-outflows.html" class="dropdown-item">DESI Quasar Outflows</a>
+                        <a href="rbh1-validation.html" class="dropdown-item">RBH-1 Validation</a>
+                        <a href="year-of-code-2026.html" class="dropdown-item">Year of Code 2026</a>
+                        <a href="proxmox-astronomy-lab.html" class="dropdown-item">Proxmox Astronomy Lab</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="../assets/desi-cosmic-voids-repo-banner.png" alt="DESI Cosmic Void Galaxies" class="hero-image">
+            <div class="container hero-content animate-fade-in">
+                <h1 class="hero-title">DESI Cosmic Void Galaxies</h1>
+                <p class="hero-subtitle">The first Analysis-Ready Dataset for astronomy — environmental quenching research as the proving ground</p>
+                <div class="mt-3">
+                    <a href="https://github.com/radioastronomyio/desi-cosmic-void-galaxies" target="_blank" class="btn btn-primary">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview -->
+        <section class="container">
+            <p class="lead">This repository builds an enriched, analysis-ready dataset from DESI Data Release 1, combining galaxy catalogs, void classifications, QSO properties, and spectral data into a unified resource. The environmental quenching study serves as the first consumer application and validation of the ARD architecture.</p>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="6445927">0</span>
+                    <span class="stat-label">Galaxy Rows</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="10752">0</span>
+                    <span class="stat-label">Void Classifications</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="98">0%</span> <!-- data-count integer for animation? 98.6 is hard. Let's just put static text if decimal needed, or 98 -->
+                    <span class="stat-label">Compression Ratio</span>
+                </div>
+            </div>
+
+            <h2>Research Question</h2>
+            <blockquote>
+                By comparing void galaxies (isolated) to wall galaxies (in denser environments), we disentangle "nature" from "nurture" in galaxy evolution. Recent DESI DR1 work shows void galaxies tend to be fainter, less massive, and more star-forming.
+            </blockquote>
+            
+            <h3>Downstream Consumers</h3>
+            <ul>
+                <li>DESI QSO Anomaly Detection</li>
+                <li>DESI Quasar Outflows</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links mb-2">
+                <a href="https://github.com/radioastronomyio" target="_blank" rel="noopener">GitHub Organization</a>
+                <a href="https://github.com/radioastronomyio/radioastronomyio-website" target="_blank" rel="noopener">Website Repo</a>
+                <a href="../sitemap.xml">Sitemap</a>
+            </div>
+            <p class="footer-copyright">
+                &copy; 2025 RadioAstronomy.io. Licensed under MIT.<br>
+                Computational astronomy research through open data, reproducible workflows, and enterprise infrastructure.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

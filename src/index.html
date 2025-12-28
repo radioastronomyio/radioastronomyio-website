@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    =========================================================================
+    File         : index.html
+    Description  : Home page for RadioAstronomy.io - Organization Overview
+    Repository   : radioastronomyio-website
+    Author       : VintageDon (https://github.com/vintagedon)
+    Created      : 2025-12-28
+    Phase        : Phase 2a
+    =========================================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RadioAstronomy.io | Computational Astronomy & Infrastructure</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="RadioAstronomy.io | Computational Astronomy">
+    <meta property="og:description" content="Computational astronomy research investigating galaxy evolution, cosmic large-scale structure, and quasar physics.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://radioastronomy.io/">
+    <meta property="og:image" content="https://radioastronomy.io/assets/radioastronomyio-org-hero-image.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RadioAstronomy.io | Computational Astronomy">
+    <meta name="twitter:description" content="Computational astronomy research investigating galaxy evolution, cosmic large-scale structure, and quasar physics.">
+    <meta name="twitter:image" content="https://radioastronomy.io/assets/radioastronomyio-org-hero-image.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/radioastronomy-logo-200x200.jpg" type="image/jpeg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "RadioAstronomy.io",
+      "url": "https://radioastronomy.io",
+      "logo": "https://radioastronomy.io/assets/radioastronomy-logo-200x200.jpg",
+      "sameAs": [
+        "https://github.com/radioastronomyio"
+      ],
+      "description": "Computational astronomy research investigating galaxy evolution, cosmic large-scale structure, and quasar physics."
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/radioastronomy-logo-200x200.jpg" alt="RadioAstronomy.io Logo">
+                RadioAstronomy.io
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                &#9776;
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Projects &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="repos/desi-cosmic-void-galaxies.html" class="dropdown-item">DESI Cosmic Void Galaxies</a>
+                        <a href="repos/desi-qso-anomaly-detection.html" class="dropdown-item">DESI QSO Anomaly Detection</a>
+                        <a href="repos/desi-quasar-outflows.html" class="dropdown-item">DESI Quasar Outflows</a>
+                        <a href="repos/rbh1-validation.html" class="dropdown-item">RBH-1 Validation</a>
+                        <a href="repos/year-of-code-2026.html" class="dropdown-item">Year of Code 2026</a>
+                        <a href="repos/proxmox-astronomy-lab.html" class="dropdown-item">Proxmox Astronomy Lab</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="assets/radioastronomyio-org-repo-banner.jpg" alt="RadioAstronomy.io Organization Overview" class="hero-image">
+            <div class="container hero-content animate-fade-in">
+                <h1 class="hero-title">RadioAstronomy.io</h1>
+                <p class="hero-subtitle">Computational astronomy research investigating galaxy evolution, cosmic large-scale structure, and quasar physics using DESI and modern spectroscopic surveys</p>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="container">
+            <h2 class="text-center">Our Mission</h2>
+            <div class="mission-text animate-fade-in">
+                <p>This organization produces research outputs in astronomy and data science, building analysis-ready datasets from large public sources. The methodology was validated through the Steam Dataset 2025 — a multi-modal gaming analytics ARD with strong engagement and downloads on both Kaggle and Zenodo — and is now being applied to DESI DR1 spectroscopic surveys.</p>
+                <p>Current work spans galaxy evolution in different cosmic environments, AGN feedback mechanisms, and ML-driven spectral analysis. The research runs on purpose-built infrastructure that enables reproducibility at scale.</p>
+            </div>
+        </section>
+
+        <!-- Organization Overview Infographic -->
+        <section class="container">
+            <h2 class="text-center">Organization Overview</h2>
+            <div class="text-center">
+                <img src="assets/radioastronomyio-org-infographic.png" alt="RadioAstronomy.io Organization Structure" class="hero-image" style="max-width: 900px; margin: 0 auto;">
+            </div>
+        </section>
+
+        <!-- Repository Grid -->
+        <section class="container">
+            <h2 class="text-center">Active Projects</h2>
+            <div class="card-grid">
+                <!-- Repo 1 -->
+                <article class="card" data-repo="radioastronomyio/desi-cosmic-void-galaxies">
+                    <img src="assets/desi-cosmic-voids-repo-banner.png" alt="DESI Cosmic Void Galaxies" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">DESI Cosmic Void Galaxies</h3>
+                        <p class="card-text">ARD factory + environmental quenching research in cosmic voids.</p>
+                        <div class="card-footer">
+                            <span class="status-badge status-active">Active</span>
+                            <a href="repos/desi-cosmic-void-galaxies.html">View Project &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Repo 2 -->
+                <article class="card" data-repo="radioastronomyio/desi-qso-anomaly-detection">
+                    <img src="assets/desi-quasar-anomoly-detection-repo-banner.png" alt="DESI QSO Anomaly Detection" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">DESI QSO Anomaly Detection</h3>
+                        <p class="card-text">ML anomaly detection on QSO spectra using autoencoders.</p>
+                        <div class="card-footer">
+                            <span class="status-badge status-planned">Planned</span>
+                            <a href="repos/desi-qso-anomaly-detection.html">View Project &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Repo 3 -->
+                <article class="card" data-repo="radioastronomyio/desi-quasar-outflows">
+                    <img src="assets/desi-quasar-outflows-repo-banner..png" alt="DESI Quasar Outflows" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">DESI Quasar Outflows</h3>
+                        <p class="card-text">AGN feedback and outflow energetics survey.</p>
+                        <div class="card-footer">
+                            <span class="status-badge status-planned">Planned</span>
+                            <a href="repos/desi-quasar-outflows.html">View Project &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Repo 4 -->
+                <article class="card" data-repo="radioastronomyio/rbh1-validation-reanalysis">
+                    <img src="assets/rbh-1-validation-repo-banner.jpg" alt="RBH-1 Validation" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">RBH-1 Validation</h3>
+                        <p class="card-text">Hypervelocity SMBH candidate reanalysis and validation.</p>
+                        <div class="card-footer">
+                            <span class="status-badge status-active">Active</span>
+                            <a href="repos/rbh1-validation.html">View Project &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Repo 5 -->
+                <article class="card" data-repo="radioastronomyio/year-of-code-2026">
+                    <img src="assets/year-of-code-2026-repo-banner.jpg" alt="Year of Code 2026" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">Year of Code 2026</h3>
+                        <p class="card-text">AI/ML sandbox and learning repository.</p>
+                        <div class="card-footer">
+                            <span class="status-badge status-active">Active</span>
+                            <a href="repos/year-of-code-2026.html">View Project &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Repo 6 -->
+                <article class="card" data-repo="radioastronomyio/proxmox-astronomy-lab">
+                    <img src="assets/proxmox-astronomy-lab-repo-banner.jpg" alt="Proxmox Astronomy Lab" class="card-image">
+                    <div class="card-body">
+                        <h3 class="card-title">Proxmox Astronomy Lab</h3>
+                        <p class="card-text">Platform documentation and infrastructure automation.</p>
+                        <div class="card-footer">
+                            <span class="status-badge status-production">Production</span>
+                            <a href="repos/proxmox-astronomy-lab.html">View Project &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Data Assets / Stats -->
+        <section class="container">
+            <h2 class="text-center">Data Scale</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="6445927">0</span>
+                    <span class="stat-label">Galaxy Catalog Rows</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="10752">0</span>
+                    <span class="stat-label">Void Classifications</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="9">0</span>
+                    <span class="stat-label">Value-Added Catalogs</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="7">0</span>
+                    <span class="stat-label">Compute Nodes</span>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="research.html" class="btn btn-primary">Explore Research Methodology &rarr;</a>
+            </div>
+        </section>
+
+        <!-- Open Science -->
+        <section class="container">
+            <div style="background-color: var(--color-surface); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--shadow-sm);">
+                <h2 class="text-center">Open Science Philosophy</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <p>We practice open science and open methodology — our version of "showing your work":</p>
+                    <ul>
+                        <li>Research methodologies are fully documented and repeatable</li>
+                        <li>Infrastructure configurations are version-controlled and automated</li>
+                        <li>Scripts and pipelines are published so others can learn, adapt, or improve them</li>
+                        <li>Learning processes are captured and shared for community benefit</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links mb-2">
+                <a href="https://github.com/radioastronomyio" target="_blank" rel="noopener">GitHub Organization</a>
+                <a href="https://github.com/radioastronomyio/radioastronomyio-website" target="_blank" rel="noopener">Website Repo</a>
+                <a href="sitemap.xml">Sitemap</a>
+            </div>
+            <p class="footer-copyright">
+                &copy; 2025 RadioAstronomy.io. Licensed under MIT.<br>
+                Computational astronomy research through open data, reproducible workflows, and enterprise infrastructure.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>
