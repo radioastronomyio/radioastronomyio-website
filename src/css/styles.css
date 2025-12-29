@@ -1,12 +1,14 @@
 /**
  * ==========================================================================
- * File         : styles.css
- * Description  : Core stylesheet for RadioAstronomy.io website
- * Repository   : radioastronomyio-website
- * Author       : VintageDon (https://github.com/vintagedon)
- * Created      : 2025-12-28
- * Phase        : Phase 2a
+ * RadioAstronomy.io — Core Stylesheet
  * ==========================================================================
+ *
+ * Visual identity derived from Nano Banana 3-generated graphics. The color
+ * palette, typography, and component styles match the repository banners
+ * and infographics used across the radioastronomyio GitHub organization.
+ *
+ * This stylesheet is spec-driven — see docs/website-reference.md for the
+ * complete visual style guide and design rationale.
  *
  * TABLE OF CONTENTS
  * 1. Custom Properties (CSS Variables)
@@ -21,58 +23,98 @@
  * 10. Footer
  * 11. Utilities
  * 12. Responsive
- * 13. Dark Mode
- * 14. Animations
- * 15. Components (Lightbox, Collapsibles)
+ * 13. Animations
+ * 14. Components (Lightbox, Collapsibles, TOC)
+ * 15. Dark Mode
  *
  * ==========================================================================
  */
 
 /* ==========================================================================
    1. Custom Properties
+   ==========================================================================
+   
+   All themeable values live here. Colors, spacing, and typography are
+   defined once and referenced throughout. Dark mode overrides these
+   properties when .dark-mode is applied to the body.
+   
+   AI NOTE: These properties are the single source of truth for theming.
+   Any color or spacing changes should happen here, not inline. The dark
+   mode section below must override the same property names.
    ========================================================================== */
 
 :root {
-    /* Colors - Light Mode */
-    --color-primary: #5B8FAE;       /* Steel Blue */
-    --color-secondary: #E8A87C;     /* Coral/Salmon */
-    --color-text: #2C3E50;          /* Dark Navy */
-    --color-text-muted: #6C757D;    /* Soft Gray */
-    --color-background: #F5F5F0;    /* Cream/Graph Paper */
-    --color-surface: #FFFFFF;       /* White */
-    --color-grid: #E0DDD5;          /* Light Grid */
+    /* 
+     * Color palette from Nano Banana 3 graphics.
+     * Steel blue and coral are the primary brand colors visible
+     * in all repository banners and infographics.
+     */
+    --color-primary: #5B8FAE;       /* Steel Blue — headings, links, buttons */
+    --color-secondary: #E8A87C;     /* Coral/Salmon — accents, hover states */
+    --color-text: #2C3E50;          /* Dark Navy — body text */
+    --color-text-muted: #6C757D;    /* Soft Gray — secondary text */
+    --color-background: #F5F5F0;    /* Cream — mimics graph paper background */
+    --color-surface: #FFFFFF;       /* White — cards, content containers */
+    --color-grid: #E0DDD5;          /* Light Grid — subtle background pattern */
     --color-border: #E0E0E0;
 
-    /* Typography */
+    /* Typography — system font stack for fast loading, monospace for code */
     --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --font-mono: 'SF Mono', Monaco, 'Cascadia Code', Consolas, 'Courier New', monospace;
 
-    /* Spacing */
+    /* 
+     * Spacing scale using rem for accessibility (respects user font size).
+     * These values provide consistent rhythm across components.
+     */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
     --spacing-xl: 4rem;
+
+    /*
+     * Container width is fixed px, not percentage. This was a deliberate
+     * choice to ensure proper behavior when users zoom the page — percentage
+     * widths can cause content to overflow or reflow unexpectedly at high
+     * zoom levels.
+     *
+     * AI NOTE: Do not change container-width to a percentage value.
+     * This causes zoom behavior issues that were fixed in Phase 2a.
+     */
     --container-width: 1400px;
+
+    /*
+     * Header height is used both for the navbar itself and for main content
+     * padding-top offset. These must stay in sync.
+     *
+     * AI NOTE: If changing header-height, also update the responsive
+     * override at 768px breakpoint and verify main padding-top still
+     * clears the fixed navbar.
+     */
     --header-height: 70px;
 
-    /* Borders */
+    /* Borders and shadows — subtle depth without heavy decoration */
     --border-radius: 6px;
     --border-radius-lg: 12px;
-
-    /* Shadows */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 
-    /* Transitions */
+    /* Transitions — fast for micro-interactions, normal for state changes */
     --transition-fast: 150ms ease;
     --transition-normal: 250ms ease;
 }
 
-/* Dark Mode Colors (Phase 2b Preparation) */
+/* ==========================================================================
+   Dark Mode Overrides
+   ==========================================================================
+   
+   Applied when main.js adds .dark-mode class to the body element.
+   User preference is persisted in localStorage.
+   ========================================================================== */
+
 .dark-mode {
-    --color-primary: #5B8FAE;
+    --color-primary: #5B8FAE;       /* Primary stays consistent for brand recognition */
     --color-secondary: #E8A87C;
     --color-text: #E8E8E8;
     --color-text-muted: #A0A0A0;
@@ -84,6 +126,11 @@
 
 /* ==========================================================================
    2. Reset / Base Styles
+   ==========================================================================
+   
+   Minimal reset to ensure consistent rendering across browsers.
+   The graph paper background pattern is a CSS gradient that matches
+   the Nano Banana 3 aesthetic.
    ========================================================================== */
 
 *, *::before, *::after {
@@ -102,10 +149,16 @@ body {
     background-color: var(--color-background);
     color: var(--color-text);
     line-height: 1.6;
+    
+    /* 
+     * Graph paper pattern — two perpendicular 1px lines creating a grid.
+     * The 40px size matches the visual rhythm of the NB3 graphics.
+     * Fixed attachment creates a subtle parallax effect on scroll.
+     */
     background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
                       linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
     background-size: 40px 40px;
-    background-attachment: fixed; /* Parallax-like fix for background */
+    background-attachment: fixed;
 }
 
 img {
@@ -126,6 +179,10 @@ a:hover {
 
 /* ==========================================================================
    3. Typography
+   ==========================================================================
+   
+   Headings use the primary steel blue for visual hierarchy.
+   Scale is modest — this is a content site, not a marketing landing page.
    ========================================================================== */
 
 h1, h2, h3, h4, h5, h6 {
@@ -157,6 +214,10 @@ blockquote {
 
 /* ==========================================================================
    4. Layout
+   ==========================================================================
+   
+   Simple centered container with generous padding. The max-width is
+   fixed px for zoom compatibility (see custom properties note).
    ========================================================================== */
 
 .container {
@@ -166,8 +227,13 @@ blockquote {
     padding: 0 var(--spacing-lg);
 }
 
+/*
+ * Main content offset — the navbar is position:fixed, so main needs
+ * padding-top equal to the header height to prevent content from
+ * hiding behind it.
+ */
 main {
-    padding-top: var(--header-height); /* Offset for fixed header */
+    padding-top: var(--header-height);
 }
 
 section {
@@ -176,6 +242,10 @@ section {
 
 /* ==========================================================================
    5. Navigation
+   ==========================================================================
+   
+   Fixed navbar with frosted glass effect (backdrop-filter blur).
+   Includes responsive mobile toggle and dropdown for Projects menu.
    ========================================================================== */
 
 .navbar {
@@ -184,7 +254,7 @@ section {
     left: 0;
     width: 100%;
     height: var(--header-height);
-    background-color: rgba(255, 255, 255, 0.95); /* Light mode default */
+    background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
     z-index: 1000;
@@ -234,7 +304,7 @@ section {
     color: var(--color-primary);
 }
 
-/* Dropdown */
+/* Dropdown — hover-triggered on desktop, JS handles mobile */
 .dropdown {
     position: relative;
 }
@@ -268,7 +338,7 @@ section {
     color: var(--color-primary);
 }
 
-/* Mobile Toggle */
+/* Mobile hamburger toggle — hidden on desktop */
 .nav-toggle {
     display: none;
     background: none;
@@ -280,6 +350,14 @@ section {
 
 /* ==========================================================================
    6. Hero Sections
+   ==========================================================================
+   
+   Hero images are the NB3-generated banners. Width is 80% to leave
+   breathing room — this was adjusted from 100% during Phase 2a refinement
+   because full-width banners felt visually heavy.
+   
+   AI NOTE: The 80% width and auto height are intentional. Do not add
+   fixed height constraints — banners have varying aspect ratios.
    ========================================================================== */
 
 .hero {
@@ -295,7 +373,7 @@ section {
     width: 80%;
     height: auto;
     margin: 0 auto;
-    cursor: zoom-in; /* For lightbox */
+    cursor: zoom-in; /* Indicates lightbox is available */
 }
 
 .hero-content {
@@ -317,6 +395,10 @@ section {
 
 /* ==========================================================================
    7. Cards
+   ==========================================================================
+   
+   Repository cards in a responsive grid. Each card has an image (banner),
+   body (title/description), and footer (status badge, optional stats).
    ========================================================================== */
 
 .card-grid {
@@ -377,6 +459,7 @@ section {
     font-size: 0.875rem;
 }
 
+/* Status badges — semantic colors for project state */
 .status-badge {
     padding: 2px 8px;
     border-radius: 12px;
@@ -390,6 +473,10 @@ section {
 
 /* ==========================================================================
    8. Tables
+   ==========================================================================
+   
+   Data tables for infrastructure specs, catalog inventories, etc.
+   Horizontal scroll wrapper prevents layout break on narrow screens.
    ========================================================================== */
 
 .table-responsive {
@@ -419,6 +506,10 @@ th {
 
 /* ==========================================================================
    9. Buttons
+   ==========================================================================
+   
+   Primary button uses steel blue with subtle lift on hover.
+   Scroll-to-top is a floating action button in the bottom-right corner.
    ========================================================================== */
 
 .btn {
@@ -438,11 +529,15 @@ th {
 }
 
 .btn-primary:hover {
-    background-color: #4a758f; /* Darker steel blue */
+    background-color: #4a758f; /* Slightly darker steel blue */
     color: #fff;
     transform: translateY(-1px);
 }
 
+/*
+ * Scroll-to-top button — created dynamically by main.js if not present.
+ * Visibility toggled based on scroll position.
+ */
 .scroll-top {
     position: fixed;
     bottom: var(--spacing-lg);
@@ -470,6 +565,9 @@ th {
 
 /* ==========================================================================
    10. Footer
+   ==========================================================================
+   
+   Simple centered footer with links to GitHub and other resources.
    ========================================================================== */
 
 .footer {
@@ -492,6 +590,10 @@ th {
 
 /* ==========================================================================
    11. Utilities
+   ==========================================================================
+   
+   Helper classes for common patterns. Keep this minimal — prefer
+   semantic component classes over utility soup.
    ========================================================================== */
 
 .text-center { text-align: center; }
@@ -500,7 +602,7 @@ th {
 .mb-2 { margin-bottom: var(--spacing-md); }
 .mb-3 { margin-bottom: var(--spacing-lg); }
 
-/* Counters */
+/* Stats counters — used on home page for galaxy/void counts */
 .stats-grid {
     display: flex;
     justify-content: space-around;
@@ -527,6 +629,13 @@ th {
 
 /* ==========================================================================
    12. Responsive
+   ==========================================================================
+   
+   Mobile-first adjustments. The 768px breakpoint is the primary
+   mobile/desktop threshold where navigation switches to hamburger menu.
+   
+   AI NOTE: The header-height override at 768px must stay in sync with
+   the :root value. If you change one, update the other.
    ========================================================================== */
 
 @media (max-width: 1024px) {
@@ -546,6 +655,7 @@ th {
         display: block;
     }
 
+    /* Mobile nav — vertical full-width dropdown */
     .nav-links {
         display: none;
         position: absolute;
@@ -563,6 +673,7 @@ th {
         display: flex;
     }
 
+    /* Dropdown becomes inline on mobile */
     .dropdown-content {
         position: static;
         box-shadow: none;
@@ -581,6 +692,9 @@ th {
 
 /* ==========================================================================
    13. Animations
+   ==========================================================================
+   
+   Subtle entrance animation for content sections.
    ========================================================================== */
 
 @keyframes fadeIn {
@@ -593,10 +707,17 @@ th {
 }
 
 /* ==========================================================================
-   15. Components
+   14. Components
+   ==========================================================================
+   
+   Reusable interactive components: lightbox for image zoom, collapsibles
+   for expandable sections, and auto-generated table of contents.
    ========================================================================== */
 
-/* Lightbox */
+/* --- Lightbox --- 
+   Full-screen image viewer triggered by clicking hero/card images.
+   Created dynamically by main.js.
+*/
 .lightbox-overlay {
     position: fixed;
     top: 0;
@@ -642,7 +763,9 @@ th {
     border: none;
 }
 
-/* Collapsibles */
+/* --- Collapsibles ---
+   Expandable content sections used for FAQs or detailed breakdowns.
+*/
 .collapsible-trigger {
     width: 100%;
     background-color: var(--color-surface);
@@ -689,54 +812,10 @@ th {
     border-top: none;
 }
 
-/* ==========================================================================
-   16. Phase 2b Additions
-   ========================================================================== */
-
-/* Dark Mode Toggle */
-.theme-toggle {
-    background: none;
-    border: none;
-    color: var(--color-text);
-    cursor: pointer;
-    padding: 0.5rem;
-    font-size: 1.25rem;
-    margin-right: 1rem;
-    transition: transform 0.3s ease, color 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.theme-toggle:hover {
-    color: var(--color-primary);
-    transform: rotate(15deg);
-}
-
-.dark-mode .theme-toggle .icon-moon {
-    display: none;
-}
-
-.theme-toggle .icon-sun {
-    display: none;
-}
-
-.dark-mode .theme-toggle .icon-sun {
-    display: block;
-}
-
-/* Sticky Navbar */
-.navbar.scrolled {
-    height: 60px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    background-color: rgba(255, 255, 255, 0.98);
-}
-
-.dark-mode .navbar.scrolled {
-    background-color: rgba(22, 33, 62, 0.98);
-}
-
-/* Auto Table of Contents */
+/* --- Table of Contents ---
+   Auto-generated on research.html by main.js from h2/h3 headings.
+   Only appears if a #toc-placeholder element exists.
+*/
 .toc-container {
     background-color: var(--color-surface);
     border-radius: var(--border-radius);
@@ -787,7 +866,59 @@ th {
     color: var(--color-text-muted);
 }
 
-/* GitHub Stats */
+/* ==========================================================================
+   15. Dark Mode Toggle & Sticky Nav
+   ==========================================================================
+   
+   Phase 2b additions: theme toggle button in navbar, and enhanced
+   navbar behavior on scroll.
+   ========================================================================== */
+
+/* Theme toggle button — inserted dynamically by main.js */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    color: var(--color-primary);
+    transform: rotate(15deg);
+}
+
+/* Icon visibility toggles based on current mode */
+.dark-mode .theme-toggle .icon-moon {
+    display: none;
+}
+
+.theme-toggle .icon-sun {
+    display: none;
+}
+
+.dark-mode .theme-toggle .icon-sun {
+    display: block;
+}
+
+/* Navbar shrinks slightly and gains shadow when user scrolls down */
+.navbar.scrolled {
+    height: 60px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background-color: rgba(255, 255, 255, 0.98);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(22, 33, 62, 0.98);
+}
+
+/* GitHub stats — injected by main.js into repository cards */
 .repo-stats {
     display: flex;
     gap: 1rem;
@@ -798,7 +929,7 @@ th {
     border-top: 1px dashed var(--color-border);
 }
 
-.stat-item {
+.repo-stats .stat-item {
     display: flex;
     align-items: center;
     gap: 0.25rem;

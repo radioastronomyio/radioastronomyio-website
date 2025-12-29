@@ -8,13 +8,10 @@ Milestone-based development tracking with artifacts, outputs, and validation.
 
 ```
 work-logs/
-├── 01-ideation-and-setup/      # Phase 01: Planning and repository setup
-├── 02a-core-site/              # Phase 2a: Core site + easy features (pending)
-├── 02b-medium-features/        # Phase 2b: Dark mode, GitHub stats, etc. (pending)
-├── 02c-hard-features/          # Phase 2c: Interactive diagram (pending)
-├── 03-review-and-polish/       # Phase 03: Testing and optimization (pending)
-├── 04-deployment/              # Phase 04: Azure Static Web Apps (pending)
-└── README.md                   # This file
+├── 01-ideation-and-setup/          # Phase 01: Planning and repository setup
+├── 02-website-development/         # Phase 02: Antigravity build, deployment
+├── 03-repository-standardization/  # Phase 03: README, code comments, presentation
+└── README.md                       # This file
 ```
 
 ---
@@ -24,11 +21,8 @@ work-logs/
 | Milestone | Name | Status |
 |-----------|------|--------|
 | [01-ideation-and-setup/](01-ideation-and-setup/README.md) | Planning, assets, reference doc | ✅ Complete |
-| 02a-core-site/ | Core 9-page site + easy features | ⬜ Pending |
-| 02b-medium-features/ | Dark mode, sticky nav, GitHub stats | ⬜ Pending |
-| 02c-hard-features/ | Interactive infrastructure diagram | ⬜ Pending |
-| 03-review-and-polish/ | Cross-browser testing, optimization | ⬜ Pending |
-| 04-deployment/ | Azure Static Web Apps, custom domain | ⬜ Pending |
+| [02-website-development/](02-website-development/README.md) | Antigravity build, Azure deployment | ✅ Complete |
+| [03-repository-standardization/](03-repository-standardization/README.md) | README, code comments, presentation | ✅ Complete |
 
 ---
 
@@ -46,9 +40,18 @@ XX-milestone-name/
 
 ---
 
-## 4. Related
+## 4. Repository Status
+
+This repository has reached its stable state. The site is live at [radioastronomy.io](https://radioastronomy.io), the code is documented with dual-audience comments, and the README serves as a reference implementation for spec-driven static site development.
+
+Future changes will be minor maintenance. Significant updates would spawn a new worklog (04+).
+
+---
+
+## 5. Related
 
 | Document | Relationship |
 |----------|--------------|
-| [scratch/](../scratch/README.md) | Transient notes and AI agent workspace |
 | [docs/website-reference.md](../docs/website-reference.md) | Content and feature specification |
+| [src/css/styles.css](../src/css/styles.css) | Commented stylesheet |
+| [src/js/main.js](../src/js/main.js) | Commented JavaScript |
