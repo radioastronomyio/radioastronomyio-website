@@ -1,6 +1,20 @@
+<!--
+---
+title: "Documentation Standards"
+description: "Templates and guidelines for project documentation"
+author: "VintageDon (https://github.com/vintagedon/)"
+date: "2026-03-28"
+version: "2.0"
+status: "Active"
+tags:
+  - type: directory-readme
+  - domain: documentation
+---
+-->
+
 # Documentation Standards
 
-Templates for consistent documentation in the radioastronomyio-website repository.
+Templates for RAG-optimized documentation. Start lean, expand as needed.
 
 ---
 
@@ -8,11 +22,17 @@ Templates for consistent documentation in the radioastronomyio-website repositor
 
 ```
 documentation-standards/
-├── interior-readme-template.md     # For any directory README
-├── file-header-html.md             # HTML file header template
-├── file-header-css.md              # CSS file header template
-├── file-header-js.md               # JavaScript file header template
-└── README.md                       # This file
+├── primary-readme-template.md       # Repository root README
+├── interior-readme-template.md      # Directory README
+├── general-kb-template.md           # Standalone documents
+├── worklog-readme-template.md       # Work log entries
+├── code-commenting-dual-audience.md # Code comment methodology
+├── writing-style-guide.md           # Prose conventions and AI tell suppression
+├── tagging-strategy.md              # Controlled vocabulary for tags
+├── script-header-python.md          # Python script header
+├── script-header-shell.md           # Bash script header
+├── script-header-powershell.md      # PowerShell script header
+└── README.md                        # This file
 ```
 
 ---
@@ -23,37 +43,72 @@ documentation-standards/
 
 | Template | Use For |
 |----------|---------|
+| [primary-readme-template.md](primary-readme-template.md) | Repository root README.md |
 | [interior-readme-template.md](interior-readme-template.md) | Any directory that needs a README |
+| [general-kb-template.md](general-kb-template.md) | Standalone documents (guides, specs, reports, runbooks) |
+| [worklog-readme-template.md](worklog-readme-template.md) | Date-based work log entries in `work-logs/` |
 
-### File Header Templates
+### Script Header Templates
 
 | Template | Use For |
 |----------|---------|
-| [file-header-html.md](file-header-html.md) | All `.html` files |
-| [file-header-css.md](file-header-css.md) | All `.css` files |
-| [file-header-js.md](file-header-js.md) | All `.js` files |
+| [script-header-python.md](script-header-python.md) | All `.py` files |
+| [script-header-shell.md](script-header-shell.md) | All `.sh` files |
+| [script-header-powershell.md](script-header-powershell.md) | All `.ps1` files |
+
+### Guidelines
+
+| Document | Use For |
+|----------|---------|
+| [tagging-strategy.md](tagging-strategy.md) | Controlled vocabulary for YAML frontmatter tags |
+| [code-commenting-dual-audience.md](code-commenting-dual-audience.md) | Writing comments for humans and AI agents |
+| [writing-style-guide.md](writing-style-guide.md) | Prose conventions, AI tell suppression |
 
 ---
 
 ## 3. Core Principles
 
-### Keep It Simple
+### RAG Infrastructure (Always Keep)
 
-- This is a static website, not a data pipeline
-- Templates are minimal by design
-- Add structure only where it helps maintainability
+- **YAML frontmatter** enables retrieval and filtering
+- **Semantic numbering** provides predictable section structure
+- **Preserved gaps** maintain stability: if you omit section 4, keep numbering as 1, 2, 3, 5 (never renumber)
 
-### Consistency Over Completeness
+### Bottom-Up Approach
 
-- Use the same header format across all files of a type
-- Directory READMEs follow the same pattern
-- Don't add sections just to fill space
+- Start with minimal template
+- Add sections as content requires
+- Don't fill sections for completeness
+- Wrapper is thin; content is the point
 
 ---
 
-## 4. Related
+## 4. Template Selection
+
+### Documents
+
+```
+Is it the repository root README?
+├─ Yes → primary-readme-template.md
+└─ No: Is it a directory README?
+        ├─ Yes → interior-readme-template.md
+        └─ No: Is it a standalone document?
+                └─ Yes → general-kb-template.md
+```
+
+### Scripts
+
+```
+What language?
+├─ Python (.py)     → script-header-python.md
+├─ Bash (.sh)       → script-header-shell.md
+└─ PowerShell (.ps1)→ script-header-powershell.md
+```
+
+---
+
+## 5. Related
 
 | Document | Relationship |
 |----------|--------------|
 | [docs/](../README.md) | Parent directory |
-| [website-reference.md](../website-reference.md) | Content and style specification |
