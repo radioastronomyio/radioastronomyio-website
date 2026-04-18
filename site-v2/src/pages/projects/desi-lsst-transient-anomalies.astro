@@ -1,10 +1,32 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import Container from '../../components/Container.astro';
+import ProjectPageLayout from '../../layouts/ProjectPageLayout.astro';
 ---
 
-<PageLayout title="DESI-LSST Transient Anomalies | RadioAstronomy.io">
-  <Container>
-    <h1 class="text-4xl font-bold py-20 text-center">Coming soon</h1>
-  </Container>
-</PageLayout>
+<ProjectPageLayout
+  title="DESI-LSST Transient Anomalies"
+  tagline="Fink alert broker science module for DESI-contextualized anomaly detection on the Rubin/LSST alert stream"
+  status="Planned"
+  heroImage="/images/projects/radioastronomyio-org-banner.jpg"
+  githubUrl="https://github.com/radioastronomyio/desi-lsst-transient-anomalies"
+  description="Community alert broker science module bridging DESI spectroscopic context with real-time Rubin/LSST transient detection."
+>
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Overview</h2>
+    <p class="text-brand-gray dark:text-gray-400 leading-relaxed">As the Vera C. Rubin Observatory comes online, its Legacy Survey of Space and Time (LSST) will produce millions of transient alerts per night. This project builds a science module for the Fink community alert broker that uses DESI-derived context to identify anomalous transients, prioritizing candidates that tension against expectations from their host galaxy's spectroscopic properties.</p>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Scientific Context</h2>
+    <p class="text-brand-gray dark:text-gray-400 leading-relaxed">Transient anomaly detection is traditionally bottlenecked by the need for rapid spectroscopic follow-up. By pre-computing host galaxy context from DESI DR1 spectroscopy, we can surface transients whose light curves or colors are inconsistent with their host's stellar populations, active nucleus state, or environment. This provides a ranked queue for follow-up resources.</p>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Approach</h2>
+    <ul class="space-y-2 text-brand-gray dark:text-gray-400">
+      <li>Cross-match Rubin/LSST alerts with DESI spectroscopic hosts in near real-time</li>
+      <li>Compute anomaly scores combining host context, light-curve features, and color evolution</li>
+      <li>Deploy as a Fink science module available to the broader community</li>
+      <li>Publish scoring methodology and evaluation on archival transient samples</li>
+    </ul>
+  </section>
+</ProjectPageLayout>

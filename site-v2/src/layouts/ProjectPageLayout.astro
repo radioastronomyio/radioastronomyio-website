@@ -1,0 +1,54 @@
+---
+import PageLayout from './PageLayout.astro';
+import Container from '../components/Container.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import Button from '../components/Button.astro';
+
+interface Props {
+  title: string;
+  tagline: string;
+  status: 'Active' | 'Planned' | 'Production' | 'Concept';
+  heroImage: string;
+  githubUrl: string;
+  ogImage?: string;
+  description?: string;
+}
+
+const { title, tagline, status, heroImage, githubUrl, ogImage = '/images/og/research.png', description } = Astro.props;
+---
+
+<PageLayout
+  title={`${title} | RadioAstronomy.io`}
+  description={description || tagline}
+  ogImage={ogImage}
+>
+  <section class="relative py-20 md:py-28 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={heroImage} alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-brand-navy/80 dark:bg-dark-bg/90" />
+    </div>
+    <div class="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8 text-white">
+      <div class="max-w-3xl">
+        <StatusBadge variant={status} />
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mt-4">{title}</h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-200">{tagline}</p>
+      </div>
+    </div>
+  </section>
+
+  <Container>
+    <div class="py-16 max-w-3xl mx-auto space-y-12">
+      <slot />
+
+      <section class="pt-8 border-t border-brand-grid dark:border-dark-surface">
+        <h2 class="text-xl font-bold mb-4">Links</h2>
+        <div class="flex flex-wrap gap-3">
+          <Button label="GitHub Repository" href={githubUrl} variant="primary" external={true} />
+        </div>
+        <p class="mt-3 text-sm text-brand-gray dark:text-gray-400">
+          Status: <StatusBadge variant={status} />
+        </p>
+      </section>
+    </div>
+  </Container>
+</PageLayout>

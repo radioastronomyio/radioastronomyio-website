@@ -1,10 +1,38 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import Container from '../../components/Container.astro';
+import ProjectPageLayout from '../../layouts/ProjectPageLayout.astro';
 ---
 
-<PageLayout title="DESI QSO Anomaly Detection | RadioAstronomy.io">
-  <Container>
-    <h1 class="text-4xl font-bold py-20 text-center">Coming soon</h1>
-  </Container>
-</PageLayout>
+<ProjectPageLayout
+  title="DESI QSO Anomaly Detection"
+  tagline="ML-driven outlier discovery in 1.6M quasar spectra"
+  status="Planned"
+  heroImage="/images/projects/desi-qso-anomaly-detection.png"
+  githubUrl="https://github.com/radioastronomyio/desi-qso-anomaly-detection"
+  description="Unsupervised anomaly detection to identify unusual quasar spectra within DESI Data Release 1 using autoencoder architectures."
+>
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Overview</h2>
+    <p class="text-brand-gray dark:text-gray-400 leading-relaxed">DESI-QAD uses unsupervised anomaly detection to identify unusual quasar spectra within DESI Data Release 1. By leveraging autoencoder architectures, we discover statistical outliers that may represent rare physical phenomena, unusual accretion physics, or potentially new classes of astronomical objects.</p>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Scientific Motivation</h2>
+    <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-2">While the average quasar spectrum is well-understood, the full diversity of these objects remains an active area of research. Outliers can reveal:</p>
+    <ul class="space-y-1 text-brand-gray dark:text-gray-400">
+      <li>Extreme physical properties (unusual accretion rates, metallicities)</li>
+      <li>Rare evolutionary phases or transient events</li>
+      <li>Complex absorption or dust reddening</li>
+      <li>Misclassified objects or new source types</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Approach</h2>
+    <ol class="space-y-2 text-brand-gray dark:text-gray-400">
+      <li>1. Train autoencoder on majority of spectra to learn "normal" features</li>
+      <li>2. Calculate reconstruction error as anomaly score</li>
+      <li>3. Rank spectra by anomaly score to identify outliers</li>
+      <li>4. Visual inspection and cross-matching for validation</li>
+    </ol>
+  </section>
+</ProjectPageLayout>

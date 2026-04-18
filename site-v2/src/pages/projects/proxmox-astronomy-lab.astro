@@ -1,10 +1,38 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import Container from '../../components/Container.astro';
+import ProjectPageLayout from '../../layouts/ProjectPageLayout.astro';
 ---
 
-<PageLayout title="Proxmox Astronomy Lab | RadioAstronomy.io">
-  <Container>
-    <h1 class="text-4xl font-bold py-20 text-center">Coming soon</h1>
-  </Container>
-</PageLayout>
+<ProjectPageLayout
+  title="Proxmox Astronomy Lab"
+  tagline="Enterprise-grade astronomical computing platform documentation"
+  status="Production"
+  heroImage="/images/projects/proxmox-astronomy-lab.jpg"
+  githubUrl="https://github.com/radioastronomyio/proxmox-astronomy-lab"
+  description="The infrastructure foundation for all research workloads. 7-node Proxmox cluster with hybrid RKE2 Kubernetes, strategic VMs, and GPU compute."
+>
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Overview</h2>
+    <p class="text-brand-gray dark:text-gray-400 leading-relaxed">The infrastructure foundation for all research workloads. Documents the 7-node Proxmox cluster, VM inventory, network architecture, and automation patterns. This is the platform that enables reproducible, scalable research across all projects.</p>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">What Makes This Unique</h2>
+    <ul class="space-y-2 text-brand-gray dark:text-gray-400">
+      <li><strong>Enterprise-Grade, Research-Scale:</strong> Institutional-level capabilities with full documentation</li>
+      <li><strong>Hybrid Architecture:</strong> RKE2 Kubernetes for dynamic workloads + strategic VMs for databases</li>
+      <li><strong>Production Workloads:</strong> Real DESI analysis producing real research outputs</li>
+      <li><strong>Documentation Excellence:</strong> CIS Controls compliance, systematic knowledge management</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Platform Capabilities</h2>
+    <ul class="space-y-2 text-brand-gray dark:text-gray-400">
+      <li>174 vCPUs allocated across 35+ VMs</li>
+      <li>PostgreSQL clusters with 30GB+ DESI data</li>
+      <li>Ray distributed computing on RKE2</li>
+      <li>RTX A4000 GPU acceleration</li>
+      <li>Enterprise security (Azure AD, Zero Trust)</li>
+    </ul>
+  </section>
+</ProjectPageLayout>

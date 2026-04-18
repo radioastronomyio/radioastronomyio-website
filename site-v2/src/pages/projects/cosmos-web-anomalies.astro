@@ -1,10 +1,32 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import Container from '../../components/Container.astro';
+import ProjectPageLayout from '../../layouts/ProjectPageLayout.astro';
 ---
 
-<PageLayout title="COSMOS-Web Anomalies | RadioAstronomy.io">
-  <Container>
-    <h1 class="text-4xl font-bold py-20 text-center">Coming soon</h1>
-  </Container>
-</PageLayout>
+<ProjectPageLayout
+  title="COSMOS-Web Anomalies"
+  tagline="Systematic anomaly detection on COSMOS-Web DR1 imaging using tension between independent measurements"
+  status="Planned"
+  heroImage="/images/projects/radioastronomyio-org-banner.jpg"
+  githubUrl="https://github.com/radioastronomyio/cosmos2025-anomalies"
+  description="ML-driven anomaly detection surfacing unusual objects in COSMOS-Web DR1 by exploiting disagreement between independent photometric and morphological measurements."
+>
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Overview</h2>
+    <p class="text-brand-gray dark:text-gray-400 leading-relaxed">COSMOS-Web is a JWST imaging survey producing deep multiband photometry and morphology of galaxies at high redshift. When independent measurement pipelines disagree on an object's properties, those disagreements can indicate rare objects, unusual morphologies, or pipeline edge cases worth investigating. This project builds a systematic anomaly detection framework that exploits measurement tension as a discovery signal.</p>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Scientific Context</h2>
+    <p class="text-brand-gray dark:text-gray-400 leading-relaxed">Modern surveys typically run multiple independent pipelines that each produce estimates of the same physical quantities (photometric redshift, morphology, stellar mass). Agreement is assumed; disagreement is often filtered out. We treat disagreement as information. Objects where independent pipelines return tensioned estimates are candidates for genuine astrophysical novelty, not just pipeline noise.</p>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Approach</h2>
+    <ul class="space-y-2 text-brand-gray dark:text-gray-400">
+      <li>Ingest COSMOS-Web DR1 catalogs and their per-object measurement uncertainties from independent pipelines</li>
+      <li>Compute tension metrics between estimates of the same physical quantity</li>
+      <li>Apply unsupervised learning to identify the subset of tensioned objects that exhibit coherent anomaly patterns</li>
+      <li>Produce a ranked catalog of candidate anomalous objects with full provenance for follow-up</li>
+    </ul>
+  </section>
+</ProjectPageLayout>

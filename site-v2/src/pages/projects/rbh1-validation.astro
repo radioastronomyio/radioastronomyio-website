@@ -1,10 +1,32 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import Container from '../../components/Container.astro';
+import ProjectPageLayout from '../../layouts/ProjectPageLayout.astro';
 ---
 
-<PageLayout title="RBH-1 Validation | RadioAstronomy.io">
-  <Container>
-    <h1 class="text-4xl font-bold py-20 text-center">Coming soon</h1>
-  </Container>
-</PageLayout>
+<ProjectPageLayout
+  title="RBH-1 Validation & Reanalysis"
+  tagline="Independent analysis of the hypervelocity SMBH bow shock candidate"
+  status="Active"
+  heroImage="/images/projects/rbh1-validation.jpg"
+  githubUrl="https://github.com/radioastronomyio/rbh1-validation-reanalysis"
+  description="Independent validation and reanalysis of the RBH-1 hypervelocity supermassive black hole candidate using Bayesian inference and GPU-accelerated computing."
+>
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Overview</h2>
+    <p class="text-brand-gray dark:text-gray-400 leading-relaxed">Independent validation and reanalysis of the RBH-1 hypervelocity supermassive black hole candidate (van Dokkum et al. 2025) using Bayesian inference and GPU-accelerated computing.</p>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Research Context</h2>
+    <p class="text-brand-gray dark:text-gray-400 leading-relaxed">RBH-1 was proposed as a runaway supermassive black hole ejected from its host galaxy, with a luminous trail interpreted as a bow shock. This project provides independent reanalysis to test the hypothesis against alternative explanations.</p>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Approach</h2>
+    <ul class="space-y-2 text-brand-gray dark:text-gray-400">
+      <li>Analysis-Ready Dataset construction from HST/JWST observations</li>
+      <li>Bayesian model comparison (bow shock vs. edge-on galaxy)</li>
+      <li>GPU-accelerated MCMC sampling</li>
+      <li>Transparent methodology with full reproducibility</li>
+    </ul>
+  </section>
+</ProjectPageLayout>

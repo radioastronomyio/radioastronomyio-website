@@ -1,10 +1,37 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import Container from '../../components/Container.astro';
+import ProjectPageLayout from '../../layouts/ProjectPageLayout.astro';
 ---
 
-<PageLayout title="DESI Quasar Outflows | RadioAstronomy.io">
-  <Container>
-    <h1 class="text-4xl font-bold py-20 text-center">Coming soon</h1>
-  </Container>
-</PageLayout>
+<ProjectPageLayout
+  title="DESI Quasar Outflows"
+  tagline="Large-scale survey of AGN feedback and outflow energetics"
+  status="Planned"
+  heroImage="/images/projects/desi-quasar-outflows.png"
+  githubUrl="https://github.com/radioastronomyio/desi-quasar-outflows"
+  description="Semi-automated spectral fitting and large-scale photoionization modeling to create the first comprehensive catalog of quasar outflow energetics."
+>
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Overview</h2>
+    <p class="text-brand-gray dark:text-gray-400 leading-relaxed">This project performs systematic measurement of physical properties and energetics in quasar-driven outflows using DESI DR1 spectroscopy. Through semi-automated spectral fitting and large-scale photoionization modeling, we create the first comprehensive catalog of outflow properties.</p>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Scientific Questions</h2>
+    <ul class="space-y-2 text-brand-gray dark:text-gray-400">
+      <li>Which quasar outflows are energetic enough to impact galaxy evolution?</li>
+      <li>What fraction of quasars drive powerful outflows capable of quenching star formation?</li>
+      <li>How far from the central black hole do these outflows extend?</li>
+      <li>What are the mass outflow rates and their relationship to luminosity?</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Methodology</h2>
+    <ol class="space-y-2 text-brand-gray dark:text-gray-400">
+      <li>1. Targeted candidate selection from MgII absorber catalog</li>
+      <li>2. Semi-automated spectral fitting with human-in-loop validation</li>
+      <li>3. Large-scale Cloudy photoionization modeling</li>
+      <li>4. Energetics derivation (distances, mass rates, kinetic luminosity)</li>
+    </ol>
+  </section>
+</ProjectPageLayout>

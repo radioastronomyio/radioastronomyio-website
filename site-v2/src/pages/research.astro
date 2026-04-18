@@ -1,10 +1,126 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Container from '../components/Container.astro';
+import Hero from '../components/Hero.astro';
+import StatsBlock from '../components/StatsBlock.astro';
+import Button from '../components/Button.astro';
+import ValueAddedCatalogTable from '../components/ValueAddedCatalogTable.astro';
+
+const vacs = [
+  { category: 'Galaxy', name: 'FastSpecFit', purpose: 'Stellar continuum + emission lines', url: 'https://data.desi.lbl.gov/doc/releases/dr1/vac/fastspecfit/' },
+  { category: 'Galaxy', name: 'PROVABGS', purpose: 'Bayesian SED fitting with posteriors', url: 'https://data.desi.lbl.gov/doc/releases/edr/vac/provabgs/' },
+  { category: 'Galaxy', name: 'DESIVAST', purpose: 'Cosmic void classifications (4 algorithms)', url: 'https://data.desi.lbl.gov/doc/releases/dr1/vac/desivast/' },
+  { category: 'Galaxy', name: 'Gfinder', purpose: 'Halo-based group catalog', url: 'https://data.desi.lbl.gov/doc/releases/dr1/vac/gfinder/' },
+  { category: 'QSO', name: 'AGN/QSO', purpose: 'Spectral and IR classification', url: 'https://data.desi.lbl.gov/doc/releases/dr1/vac/agnqso/' },
+  { category: 'QSO', name: 'CIV Absorber', purpose: 'Intervening CIV systems', url: 'https://data.desi.lbl.gov/doc/releases/dr1/vac/civ-absorber/' },
+  { category: 'QSO', name: 'MgII Absorber', purpose: 'Intervening MgII systems', url: 'https://data.desi.lbl.gov/doc/releases/dr1/vac/mgii-absorber/' },
+  { category: 'QSO', name: 'QMassIron', purpose: 'Black hole masses', url: 'https://data.desi.lbl.gov/doc/releases/dr1/vac/qmassiron/' },
+  { category: 'QSO', name: 'Stellar Mass/EmLine', purpose: 'CIGALE masses and emission line properties', url: 'https://data.desi.lbl.gov/doc/releases/dr1/vac/stellar-mass-emline/' },
+];
 ---
 
-<PageLayout title="Research | RadioAstronomy.io">
+<PageLayout
+  title="Research | RadioAstronomy.io"
+  description="DESI DR1 research from RadioAstronomy.io: environmental quenching in cosmic voids, AGN feedback and outflow energetics, ML-driven anomaly detection, and upcoming Rubin/LSST and COSMOS-Web work."
+  ogImage="/images/og/research.png"
+>
+  <Hero
+    variant="banner"
+    title="DESI Research and Beyond"
+    subtitle="Galaxy evolution, quasar physics, and ML-driven spectral analysis on the largest spectroscopic survey to date"
+    backgroundImage="/images/heroes/research.jpg"
+  />
+
   <Container>
-    <h1 class="text-4xl font-bold py-20 text-center">Coming soon</h1>
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Research Focus</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed">Our research uses large public spectroscopic survey data, primarily DESI Data Release 1, the largest spectroscopic survey to date. We investigate fundamental questions about galaxy evolution and quasar physics. We build Analysis-Ready Datasets (ARDs) that transform raw survey data into enriched, science-ready products, then apply those ARDs to targeted research questions.</p>
+    </section>
+
+    <section class="py-16">
+      <h2 class="text-2xl font-bold text-center mb-10">Active Research Areas</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 rounded-xl bg-white dark:bg-dark-surface border border-brand-grid dark:border-brand-navy">
+          <h3 class="text-xl font-semibold mb-3">Environmental Quenching in Cosmic Voids</h3>
+          <p class="text-brand-gray dark:text-gray-400 leading-relaxed">Cosmic voids are vast underdense regions, the "bubbles" between filaments of the cosmic web. Galaxies in voids experience minimal environmental interactions, which makes them ideal laboratories for studying intrinsic evolution. We compare void galaxies to wall galaxies to disentangle "nature" (mass-driven) from "nurture" (environment-driven) quenching mechanisms.</p>
+        </div>
+        <div class="p-6 rounded-xl bg-white dark:bg-dark-surface border border-brand-grid dark:border-brand-navy">
+          <h3 class="text-xl font-semibold mb-3">AGN Feedback and Outflow Energetics</h3>
+          <p class="text-brand-gray dark:text-gray-400 leading-relaxed">Quasar-driven outflows may regulate galaxy growth through AGN feedback. We use semi-automated spectral fitting and Cloudy photoionization modeling to measure outflow properties at scale, producing distances, mass outflow rates, and kinetic luminosities. The goal is the first comprehensive catalog of quasar outflow energetics.</p>
+        </div>
+        <div class="p-6 rounded-xl bg-white dark:bg-dark-surface border border-brand-grid dark:border-brand-navy">
+          <h3 class="text-xl font-semibold mb-3">ML-Driven Anomaly Detection</h3>
+          <p class="text-brand-gray dark:text-gray-400 leading-relaxed">With 1.6 million quasar spectra, systematic outlier detection reveals rare objects that manual inspection would miss. We use autoencoder architectures to identify statistical anomalies that may represent unusual accretion physics, rare evolutionary phases, or potentially new source types.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <h2 class="text-2xl font-bold text-center mb-10">Value-Added Catalogs</h2>
+      <p class="text-brand-gray dark:text-gray-400 text-center mb-8 max-w-2xl mx-auto">Nine DESI DR1 Value-Added Catalogs integrated in our ARD:</p>
+      <div class="max-w-4xl mx-auto">
+        <ValueAddedCatalogTable catalogs={vacs} />
+      </div>
+    </section>
+
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Methodology</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">We follow a three-layer enrichment model:</p>
+      <ol class="space-y-4">
+        <li class="flex gap-3">
+          <span class="shrink-0 w-8 h-8 flex items-center justify-center bg-brand-steel text-white rounded-full font-semibold text-sm">1</span>
+          <div>
+            <strong class="block">Foundation Layer</strong>
+            <span class="text-brand-gray dark:text-gray-400">Unified catalog with cross-match linkage, environmental classifications, quality flags</span>
+          </div>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-8 h-8 flex items-center justify-center bg-brand-steel text-white rounded-full font-semibold text-sm">2</span>
+          <div>
+            <strong class="block">Physics Layer</strong>
+            <span class="text-brand-gray dark:text-gray-400">Derived physical quantities: Lick indices, pPXF kinematics, SED posteriors, outflow energetics</span>
+          </div>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-8 h-8 flex items-center justify-center bg-brand-steel text-white rounded-full font-semibold text-sm">3</span>
+          <div>
+            <strong class="block">AI / Embeddings Layer</strong>
+            <span class="text-brand-gray dark:text-gray-400">Neural spectral embeddings, similarity metrics, anomaly scores</span>
+          </div>
+        </li>
+      </ol>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mt-6">PostgreSQL serves as the materialization engine where VAC joins and derived computations occur. Final ARD products are exported to Parquet for distribution and analysis. The pipeline currently manages approximately 32 GB of catalog data in PostgreSQL and 108 GB of spectral tiles in Parquet.</p>
+    </section>
+
+    <section class="py-16">
+      <h2 class="text-2xl font-bold text-center mb-10">Data at scale</h2>
+      <StatsBlock
+        stats={[
+          { value: 6445927, label: 'Galaxy rows' },
+          { value: 10752, label: 'Void classifications' },
+          { value: 1600000, label: 'Quasar spectra', suffix: '+' },
+          { value: 9, label: 'DESI DR1 VACs' },
+        ]}
+      />
+    </section>
+
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Upcoming Work</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">As DESI research matures, two newer initiatives are taking shape:</p>
+      <div class="space-y-4">
+        <div class="p-4 rounded-lg border border-brand-grid dark:border-brand-navy">
+          <a href="/projects/desi-lsst-transient-anomalies" class="font-semibold text-brand-steel hover:underline">DESI-LSST Transient Anomalies</a>
+          <p class="text-sm text-brand-gray dark:text-gray-400 mt-1">A Fink community alert broker science module for DESI-contextualized anomaly detection on the Rubin/LSST alert stream.</p>
+        </div>
+        <div class="p-4 rounded-lg border border-brand-grid dark:border-brand-navy">
+          <a href="/projects/cosmos-web-anomalies" class="font-semibold text-brand-steel hover:underline">COSMOS-Web Anomalies</a>
+          <p class="text-sm text-brand-gray dark:text-gray-400 mt-1">Systematic anomaly detection on COSMOS-Web DR1 imaging, exploiting tension between independent measurements to surface candidates for follow-up.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="py-16 text-center">
+      <Button label="Explore Projects" href="/projects/desi-cosmic-void-galaxies" variant="primary" />
+    </div>
   </Container>
 </PageLayout>
