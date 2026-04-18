@@ -1,10 +1,124 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Container from '../components/Container.astro';
+import Hero from '../components/Hero.astro';
+import AccordionItem from '../components/AccordionItem.astro';
+import NodeInventoryTable from '../components/NodeInventoryTable.astro';
+import VMInventoryTable from '../components/VMInventoryTable.astro';
+import Button from '../components/Button.astro';
+
+const nodeRows = [
+  { node: 'node01', cpu: 'i9-12900H', cores: '20', ram: '96 GB', role: 'Compute (K8s)' },
+  { node: 'node02', cpu: 'i5-12600H', cores: '16', ram: '96 GB', role: 'Light compute + storage' },
+  { node: 'node03', cpu: 'i9-12900H', cores: '20', ram: '96 GB', role: 'Compute (K8s)' },
+  { node: 'node04', cpu: 'i9-12900H', cores: '20', ram: '96 GB', role: 'Compute (K8s)' },
+  { node: 'node05', cpu: 'i5-12600H', cores: '16', ram: '96 GB', role: 'Light compute + storage' },
+  { node: 'node06', cpu: 'i9-13900H', cores: '20', ram: '96 GB', role: 'Heavy compute (databases)' },
+  { node: 'node07', cpu: 'AMD 5950X', cores: '32', ram: '128 GB', role: 'GPU compute' },
+];
+
+const vmRows = [
+  { vm: 'radio-k8s01', vcpu: '12', ram: '48G', purpose: 'Kubernetes primary' },
+  { vm: 'radio-k8s02', vcpu: '12', ram: '48G', purpose: 'Kubernetes worker' },
+  { vm: 'radio-k8s03', vcpu: '12', ram: '48G', purpose: 'Kubernetes worker' },
+  { vm: 'radio-gpu01', vcpu: '12', ram: '48G', purpose: 'GPU worker (A4000)' },
+  { vm: 'radio-pgsql01', vcpu: '8', ram: '32G', purpose: 'Research PostgreSQL' },
+  { vm: 'radio-pgsql02', vcpu: '4', ram: '16G', purpose: 'Application PostgreSQL' },
+  { vm: 'radio-neo4j01', vcpu: '6', ram: '24G', purpose: 'Graph database' },
+  { vm: 'radio-fs02', vcpu: '4', ram: '6G', purpose: 'SMB file server' },
+  { vm: 'radio-agents01', vcpu: '8', ram: '32G', purpose: 'AI agents, monitoring' },
+];
 ---
 
-<PageLayout title="Infrastructure | RadioAstronomy.io">
+<PageLayout
+  title="Infrastructure | RadioAstronomy.io"
+  description="The Proxmox Astronomy Lab is a seven-node Proxmox cluster with 144 cores, 704 GB RAM, 26 TB NVMe, and RTX A4000 GPU compute. Enterprise-grade infrastructure for independent astronomical research."
+  ogImage="/images/og/infrastructure.png"
+>
+  <Hero
+    variant="banner"
+    title="Research Platform"
+    subtitle="Enterprise-grade astronomical computing on a seven-node Proxmox cluster"
+    backgroundImage="/images/heroes/infrastructure.png"
+  />
+
   <Container>
-    <h1 class="text-4xl font-bold py-20 text-center">Coming soon</h1>
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Platform Overview</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed">The Proxmox Astronomy Lab is a production-scale computing platform built on a seven-node Proxmox VE cluster with hybrid RKE2 Kubernetes and strategic VM architecture. We're demonstrating that sophisticated astronomical computing doesn't require institutional resources, just deliberate engineering and open-science principles.</p>
+    </section>
+
+    <section class="py-16">
+      <h2 class="text-2xl font-bold text-center mb-10">Cluster Specifications</h2>
+      <div class="max-w-2xl mx-auto overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <tbody>
+            <tr class="border-b border-brand-grid dark:border-dark-surface"><td class="py-3 px-4 font-semibold">Nodes</td><td class="py-3 px-4">7</td></tr>
+            <tr class="border-b border-brand-grid dark:border-dark-surface"><td class="py-3 px-4 font-semibold">Total Cores</td><td class="py-3 px-4">144</td></tr>
+            <tr class="border-b border-brand-grid dark:border-dark-surface"><td class="py-3 px-4 font-semibold">Total RAM</td><td class="py-3 px-4">704 GB</td></tr>
+            <tr class="border-b border-brand-grid dark:border-dark-surface"><td class="py-3 px-4 font-semibold">Total NVMe</td><td class="py-3 px-4">26 TB</td></tr>
+            <tr class="border-b border-brand-grid dark:border-dark-surface"><td class="py-3 px-4 font-semibold">Network Fabric</td><td class="py-3 px-4">10G LACP per node</td></tr>
+            <tr class="border-b border-brand-grid dark:border-dark-surface"><td class="py-3 px-4 font-semibold">GPU</td><td class="py-3 px-4">RTX A4000 16GB</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="py-16 space-y-4">
+      <h2 class="text-2xl font-bold text-center mb-10">Node Inventory</h2>
+      <AccordionItem title="Node details (7 nodes)">
+        <NodeInventoryTable rows={nodeRows} />
+      </AccordionItem>
+    </section>
+
+    <section class="py-16 space-y-4">
+      <h2 class="text-2xl font-bold text-center mb-10">VM Inventory</h2>
+      <AccordionItem title="VM details (9 VMs)">
+        <VMInventoryTable rows={vmRows} />
+      </AccordionItem>
+    </section>
+
+    <section class="py-16">
+      <h2 class="text-2xl font-bold text-center mb-10">Architecture Highlights</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div class="p-6 rounded-xl bg-white dark:bg-dark-surface border border-brand-grid dark:border-brand-navy">
+          <h3 class="font-semibold mb-2">Hybrid K8s + VM</h3>
+          <p class="text-sm text-brand-gray dark:text-gray-400">RKE2 for dynamic ML workloads, strategic VMs for databases and services that don't benefit from orchestration</p>
+        </div>
+        <div class="p-6 rounded-xl bg-white dark:bg-dark-surface border border-brand-grid dark:border-brand-navy">
+          <h3 class="font-semibold mb-2">PostgreSQL as materialization engine</h3>
+          <p class="text-sm text-brand-gray dark:text-gray-400">Catalog joins and derived computations happen in PostgreSQL, results export to Parquet for distribution</p>
+        </div>
+        <div class="p-6 rounded-xl bg-white dark:bg-dark-surface border border-brand-grid dark:border-brand-navy">
+          <h3 class="font-semibold mb-2">GPU compute</h3>
+          <p class="text-sm text-brand-gray dark:text-gray-400">RTX A4000 (16 GB VRAM) for ML training and inference workloads</p>
+        </div>
+        <div class="p-6 rounded-xl bg-white dark:bg-dark-surface border border-brand-grid dark:border-brand-navy">
+          <h3 class="font-semibold mb-2">10G networking</h3>
+          <p class="text-sm text-brand-gray dark:text-gray-400">2x10G LACP per node for high-bandwidth data movement between compute and storage</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Data Pipeline</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed">PostgreSQL serves as the materialization engine where VAC joins and derived computations occur. Final ARD products are exported to Parquet for distribution and analysis. The pipeline manages approximately 32 GB of catalog data in PostgreSQL and 108 GB of spectral tiles in Parquet format.</p>
+    </section>
+
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Governance and Operational Practices</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">Operationally, the cluster is managed under the same discipline the org applies to its research: documented, reproducible, and publicly reviewable. Specifics:</p>
+      <ul class="space-y-3 text-brand-gray dark:text-gray-400">
+        <li><strong>Security baseline</strong> — working toward CIS Controls v8.1 Implementation Group 1 alignment, with documentation rewrites in progress</li>
+        <li><strong>AI governance</strong> — model cards track intended use, data sources, evaluation results, and known limitations for the AI systems used across the org. NIST AI RMF alignment is tracked against the CIS-RAM method</li>
+        <li><strong>Published templates</strong> — governance templates are maintained in the <a href="https://github.com/vintagedon/nist-ai-rmf-cookbook" target="_blank" rel="noopener" class="text-brand-steel hover:underline">NIST AI RMF Cookbook</a> for other small research orgs to adapt</li>
+        <li><strong>Automation</strong> — Ansible-managed configuration, version-controlled infrastructure, passwordless-sudo fleet operations via a dedicated <code class="font-mono text-sm bg-brand-grid/50 dark:bg-dark-surface px-1 rounded">ansible01</code> identity</li>
+      </ul>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mt-4">None of this is certification; it's operational practice applied voluntarily at volunteer-organization scale.</p>
+    </section>
+
+    <div class="py-16 text-center">
+      <Button label="View Platform Repository" href="/projects/proxmox-astronomy-lab" variant="primary" />
+    </div>
   </Container>
 </PageLayout>

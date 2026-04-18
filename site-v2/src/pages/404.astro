@@ -3,14 +3,18 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Container from '../components/Container.astro';
 ---
 
-<PageLayout>
+<PageLayout title="Page Not Found | RadioAstronomy.io">
   <Container>
-    <div class="py-20 text-center">
-      <h1 class="text-4xl font-bold mb-4">Page not found</h1>
-      <p class="text-brand-gray dark:text-gray-400 mb-8">The page you're looking for doesn't exist.</p>
-      <a href="/" class="inline-flex items-center px-6 py-3 bg-brand-steel text-white font-semibold rounded-lg hover:bg-brand-steel/90 transition-colors">
-        Back to Home
-      </a>
+    <div class="py-24 text-center">
+      <p class="text-6xl font-bold text-brand-steel mb-4">404</p>
+      <h1 class="text-3xl font-bold mb-4">Page not found</h1>
+      <p class="text-brand-gray dark:text-gray-400 mb-2 max-w-lg mx-auto">The page you're looking for doesn't exist or has been moved.</p>
+      <p class="text-sm text-brand-gray dark:text-gray-400 mb-8 max-w-lg mx-auto">If you followed a link from the previous site layout, the content may have moved to a new URL.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/" class="inline-flex items-center px-6 py-3 bg-brand-steel text-white font-semibold rounded-lg hover:bg-brand-steel/90 transition-colors">Home</a>
+        <a href="/research" class="inline-flex items-center px-6 py-3 border-2 border-brand-navy dark:border-dark-text font-semibold rounded-lg hover:bg-brand-navy hover:text-white dark:hover:bg-dark-text dark:hover:text-dark-bg transition-colors">Research</a>
+        <a href="/projects/desi-cosmic-void-galaxies" class="inline-flex items-center px-6 py-3 border-2 border-brand-navy dark:border-dark-text font-semibold rounded-lg hover:bg-brand-navy hover:text-white dark:hover:bg-dark-text dark:hover:text-dark-bg transition-colors">Projects</a>
+      </div>
     </div>
   </Container>
 </PageLayout>

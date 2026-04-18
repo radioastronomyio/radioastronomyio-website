@@ -1,0 +1,30 @@
+---
+interface Props {
+  rows: { vm: string; vcpu: string; ram: string; purpose: string }[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full text-left border-collapse">
+    <thead>
+      <tr class="border-b-2 border-brand-navy dark:border-dark-text">
+        <th class="py-3 px-4 font-semibold text-sm uppercase tracking-wider text-brand-gray dark:text-gray-400">VM</th>
+        <th class="py-3 px-4 font-semibold text-sm uppercase tracking-wider text-brand-gray dark:text-gray-400">vCPU</th>
+        <th class="py-3 px-4 font-semibold text-sm uppercase tracking-wider text-brand-gray dark:text-gray-400">RAM</th>
+        <th class="py-3 px-4 font-semibold text-sm uppercase tracking-wider text-brand-gray dark:text-gray-400">Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr class="border-b border-brand-grid dark:border-dark-surface hover:bg-brand-grid/20 dark:hover:bg-dark-surface/50 transition-colors">
+          <td class="py-3 px-4 font-medium font-mono text-sm">{row.vm}</td>
+          <td class="py-3 px-4 text-sm text-brand-gray dark:text-gray-400">{row.vcpu}</td>
+          <td class="py-3 px-4 text-sm text-brand-gray dark:text-gray-400">{row.ram}</td>
+          <td class="py-3 px-4 text-sm text-brand-gray dark:text-gray-400">{row.purpose}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,32 @@
+---
+interface Props {
+  rows: { node: string; cpu: string; cores: string; ram: string; role: string }[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full text-left border-collapse">
+    <thead>
+      <tr class="border-b-2 border-brand-navy dark:border-dark-text">
+        <th class="py-3 px-4 font-semibold text-sm uppercase tracking-wider text-brand-gray dark:text-gray-400">Node</th>
+        <th class="py-3 px-4 font-semibold text-sm uppercase tracking-wider text-brand-gray dark:text-gray-400">CPU</th>
+        <th class="py-3 px-4 font-semibold text-sm uppercase tracking-wider text-brand-gray dark:text-gray-400">Cores</th>
+        <th class="py-3 px-4 font-semibold text-sm uppercase tracking-wider text-brand-gray dark:text-gray-400">RAM</th>
+        <th class="py-3 px-4 font-semibold text-sm uppercase tracking-wider text-brand-gray dark:text-gray-400">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr class="border-b border-brand-grid dark:border-dark-surface hover:bg-brand-grid/20 dark:hover:bg-dark-surface/50 transition-colors">
+          <td class="py-3 px-4 font-medium">{row.node}</td>
+          <td class="py-3 px-4 text-sm text-brand-gray dark:text-gray-400">{row.cpu}</td>
+          <td class="py-3 px-4 text-sm text-brand-gray dark:text-gray-400">{row.cores}</td>
+          <td class="py-3 px-4 text-sm text-brand-gray dark:text-gray-400">{row.ram}</td>
+          <td class="py-3 px-4 text-sm text-brand-gray dark:text-gray-400">{row.role}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
