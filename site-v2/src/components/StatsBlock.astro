@@ -1,0 +1,70 @@
+---
+interface Stat {
+  value: number;
+  label: string;
+  suffix?: string;
+}
+
+interface Props {
+  stats: Stat[];
+}
+
+const { stats } = Astro.props;
+---
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+  {stats.map((stat) => (
+    <div class="text-center p-6 rounded-xl bg-white dark:bg-dark-surface border border-brand-grid dark:border-brand-navy">
+      <span
+        class="text-3xl md:text-4xl font-bold text-brand-steel"
+        data-counter
+        data-target={stat.value}
+        data-suffix={stat.suffix || ''}
+      >
+        0{stat.suffix || ''}
+      </span>
+      <p class="mt-2 text-sm text-brand-gray dark:text-gray-400">{stat.label}</p>
+    </div>
+  ))}
+</div>
+
+<script>
+  const counters = document.querySelectorAll('[data-counter]');
+
+  function formatNumber(n: number): string {
+    return n.toLocaleString();
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset.target || '0');
+          const suffix = el.dataset.suffix || '';
+          const duration = 1500;
+          const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          if (prefersReduced) {
+            el.textContent = formatNumber(target) + suffix;
+          } else {
+            const start = performance.now();
+            function tick(now: number) {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = Math.round(eased * target);
+              el.textContent = formatNumber(current) + suffix;
+              if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+          }
+          observer.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  counters.forEach((c) => observer.observe(c));
+</script>

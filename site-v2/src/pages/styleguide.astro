@@ -1,0 +1,173 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Container from '../components/Container.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import StatsBlock from '../components/StatsBlock.astro';
+import CTABand from '../components/CTABand.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SponsorCard from '../components/SponsorCard.astro';
+import AccordionItem from '../components/AccordionItem.astro';
+import QuoteBlock from '../components/QuoteBlock.astro';
+import Button from '../components/Button.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+---
+
+<PageLayout title="Styleguide | RadioAstronomy.io">
+  <Container>
+    <div class="py-16 space-y-20">
+      <div>
+        <h1 class="text-4xl font-bold mb-2">Component Styleguide</h1>
+        <p class="text-brand-gray dark:text-gray-400">Visual reference for every component in the library. Use the dark mode toggle in the nav to test both themes.</p>
+      </div>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">Hero — Centered</h2>
+        <Hero
+          title="Centered Hero Example"
+          subtitle="This is the centered variant with two CTAs"
+          primaryCta={{ label: "Primary Action", href: "#" }}
+          secondaryCta={{ label: "Secondary Action", href: "#" }}
+        />
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">Hero — Banner</h2>
+        <Hero
+          variant="banner"
+          title="Banner Hero Example"
+          subtitle="This variant uses a background image with overlay"
+          backgroundImage="/images/heroes/research.jpg"
+        />
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">SectionHeading</h2>
+        <SectionHeading
+          eyebrow="Example Eyebrow"
+          title="Section Heading"
+          subtitle="An optional subtitle providing context for the section."
+        />
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">FeatureGrid</h2>
+        <FeatureGrid
+          features={[
+            { icon: '🔭', title: 'Science with Purpose', description: 'Projects are selected for concrete community output: peer-reviewed papers, Value-Added Catalogs, or reusable datasets.' },
+            { icon: '🌌', title: 'Discovery Hunters', description: 'Portfolio approach balancing proven methods with higher-risk searches for phenomena not accounted for in current models.' },
+            { icon: '🔓', title: 'Open Science, Open IT', description: 'Infrastructure design, analysis code, and operational practices are all published for others to extend.' },
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">StatsBlock (scroll into view to animate)</h2>
+        <StatsBlock
+          stats={[
+            { value: 6445927, label: 'Galaxy rows' },
+            { value: 10752, label: 'Void classifications' },
+            { value: 9, label: 'DESI DR1 VACs' },
+            { value: 7, label: 'Compute nodes' },
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">CTABand</h2>
+        <CTABand
+          heading="Ready to get started?"
+          primaryCta={{ label: "Primary CTA", href: "#" }}
+          secondaryCta={{ label: "Secondary CTA", href: "#" }}
+        />
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">ProjectCard</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <ProjectCard
+            title="DESI Cosmic Void Galaxies"
+            description="Environmental quenching in cosmic voids using DESI DR1 spectroscopic data."
+            image="/images/projects/desi-cosmic-void-galaxies.png"
+            href="/projects/desi-cosmic-void-galaxies"
+            status="Active"
+          />
+          <ProjectCard
+            title="Proxmox Astronomy Lab"
+            description="Seven-node Proxmox cluster powering the research platform."
+            image="/images/projects/proxmox-astronomy-lab.jpg"
+            href="/projects/proxmox-astronomy-lab"
+            status="Production"
+          />
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">SponsorCard</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <SponsorCard
+            name="Greptile"
+            logo="/images/sponsors/greptile.svg"
+            url="https://greptile.com"
+            provides="AI-powered code review on every pull request"
+          />
+          <SponsorCard
+            name="Macroscope"
+            logo="/images/sponsors/macroscope.svg"
+            url="https://macroscope.com"
+            provides="AI code review and architecture analysis"
+          />
+          <SponsorCard
+            name="Snyk"
+            logo="/images/sponsors/snyk.png"
+            url="https://snyk.io"
+            provides="Dependency vulnerability scanning and supply-chain security"
+          />
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">AccordionItem</h2>
+        <div class="space-y-3">
+          <AccordionItem title="Expandable Section One" open={true}>
+            <p class="text-brand-gray dark:text-gray-400">This accordion item starts open by default. Content appears below the toggle header.</p>
+          </AccordionItem>
+          <AccordionItem title="Expandable Section Two">
+            <p class="text-brand-gray dark:text-gray-400">This accordion item starts closed. Click the header to expand.</p>
+          </AccordionItem>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">QuoteBlock</h2>
+        <QuoteBlock
+          quote="RadioAstronomy.io is an independent computational astronomy research lab. We run a portfolio of discovery-oriented projects on modern spectroscopic surveys."
+          attribution="Mission Statement"
+        />
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">Buttons</h2>
+        <div class="flex flex-wrap gap-4 mb-4">
+          <Button label="Primary Button" href="#" variant="primary" />
+          <Button label="Secondary Button" href="#" variant="secondary" />
+          <Button label="Ghost Button" href="#" variant="ghost" />
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <Button label="External Link" href="https://example.com" variant="primary" external={true} />
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 border-b border-brand-grid dark:border-dark-surface pb-2">StatusBadge</h2>
+        <div class="flex flex-wrap gap-3">
+          <StatusBadge variant="Active" />
+          <StatusBadge variant="Planned" />
+          <StatusBadge variant="Production" />
+          <StatusBadge variant="Concept" />
+        </div>
+      </section>
+    </div>
+  </Container>
+</PageLayout>

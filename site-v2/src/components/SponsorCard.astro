@@ -1,0 +1,43 @@
+---
+interface Props {
+  name: string;
+  logo: string;
+  url: string;
+  provides: string;
+}
+
+const { name, logo, provides } = Astro.props;
+
+const isWhiteLogo = logo.includes('macroscope');
+const isDarkLogo = logo.includes('snyk');
+---
+
+<a
+  href={Astro.props.url}
+  target="_blank"
+  rel="noopener"
+  class:list={[
+    'group block p-6 rounded-xl border transition-shadow hover:shadow-lg',
+    isWhiteLogo
+      ? 'bg-brand-navy dark:bg-dark-bg border-brand-navy dark:border-dark-surface'
+      : isDarkLogo
+        ? 'bg-white dark:bg-dark-surface border-brand-grid dark:border-brand-navy'
+        : 'bg-white dark:bg-dark-surface border-brand-grid dark:border-brand-navy',
+  ]}
+>
+  <div class:list={[
+    'h-12 flex items-center mb-4',
+    isWhiteLogo ? 'justify-center' : '',
+  ]}>
+    <img
+      src={logo}
+      alt={`${name} logo`}
+      class:list={[
+        'max-h-10 max-w-[140px] object-contain',
+        isWhiteLogo ? 'brightness-0 invert' : '',
+      ]}
+    />
+  </div>
+  <h3 class="font-semibold mb-1 group-hover:text-brand-steel transition-colors">{name}</h3>
+  <p class="text-sm text-brand-gray dark:text-gray-400">{provides}</p>
+</a>

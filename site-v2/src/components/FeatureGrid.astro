@@ -1,0 +1,23 @@
+---
+interface Feature {
+  icon?: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  features: Feature[];
+}
+
+const { features } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  {features.map((f) => (
+    <div class="p-6 rounded-xl bg-white dark:bg-dark-surface border border-brand-grid dark:border-brand-navy">
+      {f.icon && <div class="text-3xl mb-4" aria-hidden="true">{f.icon}</div>}
+      <h3 class="text-xl font-semibold mb-2">{f.title}</h3>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed">{f.description}</p>
+    </div>
+  ))}
+</div>

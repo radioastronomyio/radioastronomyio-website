@@ -89,3 +89,4 @@ scratch/
 local/
 .local/
 *.local
+site-v2/.astro/

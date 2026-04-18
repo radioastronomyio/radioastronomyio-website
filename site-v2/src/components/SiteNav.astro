@@ -1,0 +1,158 @@
+---
+import DarkModeToggle from './DarkModeToggle.astro';
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Research', href: '/research' },
+  { label: 'Infrastructure', href: '/infrastructure' },
+  { label: 'Sponsors', href: '/sponsors' },
+];
+
+const projectItems = [
+  { label: 'DESI Cosmic Void Galaxies', href: '/projects/desi-cosmic-void-galaxies' },
+  { label: 'DESI Quasar Outflows', href: '/projects/desi-quasar-outflows' },
+  { label: 'DESI QSO Anomaly Detection', href: '/projects/desi-qso-anomaly-detection' },
+  { label: 'RBH-1 Validation', href: '/projects/rbh1-validation' },
+  { label: 'DESI-LSST Transient Anomalies', href: '/projects/desi-lsst-transient-anomalies' },
+  { label: 'COSMOS-Web Anomalies', href: '/projects/cosmos-web-anomalies' },
+  { label: 'Proxmox Astronomy Lab', href: '/projects/proxmox-astronomy-lab' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-brand-cream/95 dark:bg-dark-bg/95 backdrop-blur border-b border-brand-grid dark:border-dark-surface">
+  <nav class="max-w-container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-2 shrink-0">
+      <img src="/images/logo/radioastronomy-logo.jpg" alt="RadioAstronomy.io" class="h-8 w-8 rounded" />
+      <span class="font-semibold text-lg hidden sm:inline">RadioAstronomy.io</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-1 text-sm font-medium">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'px-3 py-2 rounded-md transition-colors',
+              currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+                ? 'bg-brand-steel/10 text-brand-steel dark:text-brand-steel'
+                : 'hover:bg-brand-grid/50 dark:hover:bg-dark-surface/50',
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+      <li class="relative group">
+        <button
+          type="button"
+          class:list={[
+            'px-3 py-2 rounded-md transition-colors inline-flex items-center gap-1',
+            currentPath.startsWith('/projects')
+              ? 'bg-brand-steel/10 text-brand-steel dark:text-brand-steel'
+              : 'hover:bg-brand-grid/50 dark:hover:bg-dark-surface/50',
+          ]}
+          aria-expanded="false"
+          aria-haspopup="true"
+        >
+          Projects
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+        </button>
+        <ul class="absolute left-0 top-full mt-1 w-64 bg-white dark:bg-dark-surface rounded-lg shadow-lg border border-brand-grid dark:border-brand-navy py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
+          {projectItems.map((p) => (
+            <li>
+              <a
+                href={p.href}
+                class:list={[
+                  'block px-4 py-2 text-sm transition-colors',
+                  currentPath === p.href
+                    ? 'bg-brand-steel/10 text-brand-steel'
+                    : 'hover:bg-brand-grid/50 dark:hover:bg-dark-surface',
+                ]}
+              >
+                {p.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+      <li>
+        <DarkModeToggle />
+      </li>
+      <li>
+        <a
+          href="https://github.com/radioastronomyio"
+          target="_blank"
+          rel="noopener"
+          class="px-3 py-2 rounded-md hover:bg-brand-grid/50 dark:hover:bg-dark-surface/50 transition-colors"
+          aria-label="GitHub organization"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" /></svg>
+        </a>
+      </li>
+    </ul>
+
+    <div class="flex items-center gap-2 md:hidden">
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        class="p-2 rounded-md hover:bg-brand-grid/50 dark:hover:bg-dark-surface/50 transition-colors"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-brand-grid dark:border-dark-surface">
+    <ul class="px-4 py-2 space-y-1 text-sm font-medium">
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href} class="block px-3 py-2 rounded-md hover:bg-brand-grid/50 dark:hover:bg-dark-surface/50 transition-colors">
+            {item.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <span class="block px-3 py-2 text-brand-gray text-xs uppercase tracking-wider font-semibold">Projects</span>
+      </li>
+      {projectItems.map((p) => (
+        <li>
+          <a href={p.href} class="block px-3 py-2 pl-6 rounded-md hover:bg-brand-grid/50 dark:hover:bg-dark-surface/50 transition-colors">
+            {p.label}
+          </a>
+        </li>
+      ))}
+      <li class="pt-2 border-t border-brand-grid dark:border-dark-surface">
+        <a
+          href="https://github.com/radioastronomyio"
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-brand-grid/50 dark:hover:bg-dark-surface/50 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" /></svg>
+          GitHub
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('hamburger-icon');
+  const close = document.getElementById('close-icon');
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden');
+    hamburger?.classList.toggle('hidden');
+    close?.classList.toggle('hidden');
+  });
+</script>

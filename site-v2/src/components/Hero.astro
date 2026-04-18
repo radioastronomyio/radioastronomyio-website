@@ -1,0 +1,48 @@
+---
+interface Props {
+  variant?: 'centered' | 'banner';
+  title: string;
+  subtitle?: string;
+  backgroundImage?: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+}
+
+const { variant = 'centered', title, subtitle, backgroundImage, primaryCta, secondaryCta } = Astro.props;
+---
+
+{variant === 'centered' ? (
+  <section class="py-20 md:py-28">
+    <div class="max-w-container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">{title}</h1>
+      {subtitle && <p class="mt-6 text-lg md:text-xl text-brand-gray dark:text-gray-400 max-w-3xl mx-auto">{subtitle}</p>}
+      {(primaryCta || secondaryCta) && (
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          {primaryCta && (
+            <a href={primaryCta.href} class="inline-flex items-center px-6 py-3 bg-brand-steel text-white font-semibold rounded-lg hover:bg-brand-steel/90 transition-colors">
+              {primaryCta.label}
+            </a>
+          )}
+          {secondaryCta && (
+            <a href={secondaryCta.href} class="inline-flex items-center px-6 py-3 border-2 border-brand-navy dark:border-dark-text font-semibold rounded-lg hover:bg-brand-navy hover:text-white dark:hover:bg-dark-text dark:hover:text-dark-bg transition-colors">
+              {secondaryCta.label}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </section>
+) : (
+  <section class="relative py-24 md:py-32 overflow-hidden">
+    {backgroundImage && (
+      <div class="absolute inset-0">
+        <img src={backgroundImage} alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-brand-navy/80 dark:bg-dark-bg/90" />
+      </div>
+    )}
+    <div class="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">{title}</h1>
+      {subtitle && <p class="mt-6 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">{subtitle}</p>}
+    </div>
+  </section>
+)}
