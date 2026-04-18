@@ -1,10 +1,118 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Container from '../components/Container.astro';
+import Hero from '../components/Hero.astro';
+import QuoteBlock from '../components/QuoteBlock.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import StatsBlock from '../components/StatsBlock.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CTABand from '../components/CTABand.astro';
+import { getCollection } from 'astro:content';
+
+const sponsors = (await getCollection('sponsors')).sort((a, b) => a.data.order - b.data.order);
+const featuredProjects = (await getCollection('projects'))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'RadioAstronomy.io',
+  url: 'https://radioastronomy.io',
+  logo: 'https://radioastronomy.io/images/logo/radioastronomy-logo.jpg',
+  description: 'RadioAstronomy.io is an independent computational astronomy research lab. Open datasets, open methodology, open infrastructure, built to be reproduced.',
+  founder: {
+    '@type': 'Person',
+    name: 'Don Fountain',
+    url: 'https://donaldfountain.ai',
+  },
+};
 ---
 
-<PageLayout>
+<PageLayout
+  title="RadioAstronomy.io | Open-Science Computational Astronomy"
+  description="RadioAstronomy.io is an independent computational astronomy research lab. Open datasets, open methodology, open infrastructure, built to be reproduced."
+  ogImage="/images/og/home.png"
+  jsonLd={jsonLd}
+>
+  <Hero
+    title="Research lab as code"
+    subtitle="Open-science computational astronomy built to be reproduced. We pursue discovery-oriented research on DESI, Rubin/LSST, and COSMOS-Web surveys. The infrastructure, methodology, governance, and datasets are all published so others can use or extend them."
+    primaryCta={{ label: 'Explore the Research', href: '/research' }}
+    secondaryCta={{ label: 'Support Our Work', href: '/sponsors' }}
+  />
+
   <Container>
-    <h1 class="text-4xl font-bold py-20 text-center">Coming soon</h1>
+    <QuoteBlock quote="RadioAstronomy.io is an independent computational astronomy research lab. We run a portfolio of discovery-oriented projects on modern spectroscopic surveys, balancing work that produces community-valuable datasets with higher-risk searches for previously unknown phenomena. Everything we build, including the infrastructure it runs on, is documented and published so other institutions and researchers can verify our work, extend it, or deploy the same approach themselves." />
+
+    <section class="py-16">
+      <h2 class="text-2xl font-bold text-center mb-10">What drives our work</h2>
+      <FeatureGrid
+        features={[
+          { icon: '🔭', title: 'Science with Purpose', description: 'Projects are selected for concrete community output: peer-reviewed papers, Value-Added Catalogs, or reusable datasets. We prioritize research addressing fundamental astrophysical questions with clear impact potential.' },
+          { icon: '🌌', title: 'Discovery Hunters', description: 'Portfolio approach balancing proven methods at unprecedented scale with higher-risk searches for phenomena not accounted for in current models. Even failed high-risk projects produce methodology improvements and side-data that serve the community.' },
+          { icon: '🔓', title: 'Open Science, Open IT', description: 'Infrastructure design, analysis code, database schemas, security baselines, and operational practices are all published. That includes the governance work adopted for the org itself: model cards for the AI systems in use, NIST AI RMF alignment, and CIS Controls v8.1 as a target. Governance templates are maintained publicly in the NIST AI RMF Cookbook for other small research orgs to adapt.' },
+        ]}
+      />
+    </section>
+
+    <section class="py-16">
+      <h2 class="text-2xl font-bold text-center mb-10">By the numbers</h2>
+      <StatsBlock
+        stats={[
+          { value: 6445927, label: 'Galaxy rows' },
+          { value: 10752, label: 'Void classifications' },
+          { value: 9, label: 'DESI DR1 Value-Added Catalogs' },
+          { value: 7, label: 'Compute nodes' },
+        ]}
+      />
+    </section>
+
+    <section class="py-16">
+      <h2 class="text-2xl font-bold text-center mb-10">Featured research</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {featuredProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.short_description}
+            image={project.data.hero_image}
+            href={`/projects/${project.id}`}
+            status={project.data.status}
+          />
+        ))}
+      </div>
+    </section>
+
+    <section class="py-16">
+      <h2 class="text-2xl font-bold text-center mb-10">Supported by</h2>
+      <div class="flex flex-wrap justify-center items-center gap-8">
+        {sponsors.map((sponsor) => (
+          <a
+            href={sponsor.data.url}
+            target="_blank"
+            rel="noopener"
+            class="group relative"
+          >
+            <img
+              src={sponsor.data.logo}
+              alt={sponsor.data.name}
+              class:list={[
+                'h-10 max-w-[120px] object-contain opacity-70 hover:opacity-100 transition-opacity',
+                sponsor.data.logo.includes('macroscope') ? 'invert' : '',
+              ]}
+            />
+            <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-brand-navy dark:bg-dark-surface text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+              {sponsor.data.name}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
   </Container>
+
+  <CTABand
+    heading="Support open-science astronomy"
+    primaryCta={{ label: 'Support on GitHub', href: 'https://github.com/sponsors/radioastronomyio' }}
+    secondaryCta={{ label: 'Explore Research', href: '/research' }}
+  />
 </PageLayout>

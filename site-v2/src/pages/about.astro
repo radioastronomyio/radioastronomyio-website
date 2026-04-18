@@ -1,10 +1,87 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Container from '../components/Container.astro';
+import Hero from '../components/Hero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import Button from '../components/Button.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'RadioAstronomy.io',
+  url: 'https://radioastronomy.io',
+  logo: 'https://radioastronomy.io/images/logo/radioastronomy-logo.jpg',
+  description: 'About RadioAstronomy.io, an independent computational astronomy research lab. Mission, methodology, infrastructure, governance, and non-profit plans.',
+  founder: {
+    '@type': 'Person',
+    name: 'Don Fountain',
+    url: 'https://donaldfountain.ai',
+  },
+};
 ---
 
-<PageLayout title="About | RadioAstronomy.io">
+<PageLayout
+  title="About | RadioAstronomy.io"
+  description="About RadioAstronomy.io, an independent computational astronomy research lab. Mission, methodology, infrastructure, governance, and non-profit plans."
+  ogImage="/images/og/about.png"
+  jsonLd={jsonLd}
+>
+  <Hero
+    title="About RadioAstronomy.io"
+    subtitle="An independent computational astronomy research lab, built as a reproducible reference for others doing similar work."
+  />
+
   <Container>
-    <h1 class="text-4xl font-bold py-20 text-center">Coming soon</h1>
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Origin</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">RadioAstronomy.io started as a question: could an independent research operation, working with modern AI-assisted tooling and purpose-built infrastructure, do real astronomical research at a scale normally associated with institutional labs? The answer has become the work you see here.</p>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">The methodology was validated through the Steam Dataset 2025, a multi-modal gaming analytics Analysis-Ready Dataset with strong engagement on Kaggle and Zenodo. That same ARD architecture and reproducibility discipline is now applied to DESI DR1 spectroscopic surveys, with planned extensions to Rubin/LSST alert streams and COSMOS-Web imaging.</p>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed">The research runs on a seven-node Proxmox cluster built from small-form-factor enterprise workstations, with 144 cores, 704 GB of RAM, 26 TB of NVMe, and a dedicated GPU node. The infrastructure itself is documented as a public reference so other researchers and small institutions can deploy similar environments.</p>
+    </section>
+
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Founder</h2>
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <img src="/images/founder/don-fountain.jpg" alt="Don Fountain" class="w-32 h-32 rounded-lg object-cover shrink-0" />
+        <div>
+          <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">RadioAstronomy.io is run by Don Fountain (<a href="https://github.com/vintagedon" target="_blank" rel="noopener" class="text-brand-steel hover:underline">@vintagedon</a>) with volunteer contributors. Don's day job is systems engineering for high-compliance environments. The operational habits from that work, documentation discipline, risk-aware change management, explicit governance, carry over to how the org operates, adapted to volunteer-scale and open-science norms.</p>
+          <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">For Don's professional background, writing, and consulting, see <a href="https://donaldfountain.ai" target="_blank" rel="noopener" class="text-brand-steel hover:underline">donaldfountain.ai</a>.</p>
+          <div class="flex flex-wrap gap-3">
+            <Button label="Visit donaldfountain.ai" href="https://donaldfountain.ai" variant="primary" external={true} />
+            <Button label="ORCID" href="https://orcid.org/0009-0008-7695-4093" variant="ghost" external={true} />
+            <Button label="GitHub" href="https://github.com/vintagedon" variant="ghost" external={true} />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">How we operate</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">A few operational notes that follow from the third pillar:</p>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">The AI systems used across the organization are documented via model cards tracking intended use, data sources, evaluation results, and known limitations. The org maintains an internal review process for adopting new AI tooling, and the templates for that process are published in the <a href="https://github.com/vintagedon/nist-ai-rmf-cookbook" target="_blank" rel="noopener" class="text-brand-steel hover:underline">NIST AI RMF Cookbook</a> for other small research orgs to adapt. The cluster is working toward CIS Controls v8.1 Implementation Group 1 alignment, with documentation rewrites in progress.</p>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed">When cluster capacity is available beyond our own research workload, we make GPU and compute time available to astronomy students working on coursework, thesis research, or projects staging for allocation on larger systems. This is informal and word-of-mouth rather than a formal program.</p>
+    </section>
+
+    <section class="py-16">
+      <h2 class="text-2xl font-bold text-center mb-10">Our approach</h2>
+      <FeatureGrid
+        features={[
+          { icon: '🔭', title: 'Science with Purpose', description: 'Projects are selected for concrete community output: peer-reviewed papers, Value-Added Catalogs, or reusable datasets. We prioritize research addressing fundamental astrophysical questions with clear impact potential.' },
+          { icon: '🌌', title: 'Discovery Hunters', description: 'Portfolio approach balancing proven methods at unprecedented scale with higher-risk searches for phenomena not accounted for in current models. Even failed high-risk projects produce methodology improvements and side-data that serve the community.' },
+          { icon: '🔓', title: 'Open Science, Open IT', description: 'Infrastructure design, analysis code, database schemas, security baselines, and operational practices are all published. That includes the governance work adopted for the org itself: model cards for the AI systems in use, NIST AI RMF alignment, and CIS Controls v8.1 as a target.' },
+        ]}
+      />
+    </section>
+
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Non-profit status</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed">RadioAstronomy.io is in the process of incorporating as a 501(c)(3) non-profit organization, with state incorporation and IRS application targeted for 2026. Until the IRS determination letter is issued, sponsorships via GitHub Sponsors are welcome and meaningful, though contributions are not yet tax-deductible as charitable donations. Tax-deductible individual and institutional giving will launch once 501(c)(3) status is confirmed.</p>
+    </section>
+
+    <section class="py-16 max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-6">Contact</h2>
+      <p class="text-lg mb-2"><a href="mailto:astronomylab@radioastronomy.io" class="text-brand-steel hover:underline">astronomylab@radioastronomy.io</a></p>
+      <Button label="GitHub Organization" href="https://github.com/radioastronomyio" variant="ghost" external={true} />
+    </section>
   </Container>
 </PageLayout>

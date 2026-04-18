@@ -1,10 +1,69 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Container from '../components/Container.astro';
+import Hero from '../components/Hero.astro';
+import SponsorCard from '../components/SponsorCard.astro';
+import CTABand from '../components/CTABand.astro';
+import { getCollection } from 'astro:content';
+
+const sponsors = (await getCollection('sponsors')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<PageLayout title="Sponsors & Community | RadioAstronomy.io">
+<PageLayout
+  title="Sponsors & Community | RadioAstronomy.io"
+  description="RadioAstronomy.io is supported by open-source sponsorship programs from Atlassian, CodeRabbit, DeepInfra, Greptile, Macroscope, Sentry, and Snyk. We also make cluster compute time available to astronomy students."
+  ogImage="/images/og/sponsors.png"
+>
+  <Hero
+    title="Sponsors & Community"
+    subtitle="Open-source sponsor programs make independent astronomical research possible. When we have capacity, we give back to students working in the same field."
+  />
+
   <Container>
-    <h1 class="text-4xl font-bold py-20 text-center">Coming soon</h1>
+    <section class="py-16">
+      <h2 class="text-2xl font-bold text-center mb-10">Current sponsors</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sponsors.map((sponsor) => (
+          <SponsorCard
+            name={sponsor.data.name}
+            logo={sponsor.data.logo}
+            url={sponsor.data.url}
+            provides={sponsor.data.provides}
+          />
+        ))}
+      </div>
+    </section>
+
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Compute time for astronomy students</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">When the cluster has capacity beyond our own research workload, we make GPU and compute time available to astronomy students working on coursework, thesis research, or projects staging for larger allocations on systems like university supercomputing centers.</p>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">The pattern we see most often: a student has a workload that needs to run reliably before they burn allocated hours on a larger cluster. A seven-node Proxmox environment is a lower-stakes place to debug, profile, and tune. They ship cleaner runs upstream; we get exposure to workloads outside our own niche and learn what else the infrastructure can handle. Mutually beneficial, not charitable.</p>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed">This is informal. There's no application form, no SLA, no program page. Word-of-mouth only. If you're an astronomy student or researcher with a compute need and you've found your way here, the contact email is <a href="mailto:astronomylab@radioastronomy.io" class="text-brand-steel hover:underline">astronomylab@radioastronomy.io</a>.</p>
+    </section>
+
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Become a Sponsor</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-4">Open-source sponsor programs have made independent research feasible. If your company's open-source sponsorship program aligns with computational astronomy, data science tooling, or research infrastructure, we'd welcome a conversation.</p>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed mb-2">What sponsorship enables:</p>
+      <ul class="list-disc list-inside text-brand-gray dark:text-gray-400 space-y-1 mb-6">
+        <li>Direct support of peer-reviewed astronomy research</li>
+        <li>Public documentation and methodology that benefits your technical community</li>
+        <li>Clear attribution on the organization README, website, and project READMEs</li>
+        <li>Case studies on how your tooling supports research reproducibility</li>
+      </ul>
+      <div class="flex flex-wrap gap-4">
+        <a href="https://github.com/sponsors/radioastronomyio" target="_blank" rel="noopener" class="inline-flex items-center px-6 py-3 bg-brand-steel text-white font-semibold rounded-lg hover:bg-brand-steel/90 transition-colors">
+          Sponsor on GitHub
+        </a>
+        <a href="mailto:astronomylab@radioastronomy.io" class="inline-flex items-center px-6 py-3 border-2 border-brand-navy dark:border-dark-text font-semibold rounded-lg hover:bg-brand-navy hover:text-white dark:hover:bg-dark-text dark:hover:text-dark-bg transition-colors">
+          Contact Us
+        </a>
+      </div>
+    </section>
+
+    <section class="py-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Future giving</h2>
+      <p class="text-brand-gray dark:text-gray-400 leading-relaxed">Tax-deductible individual and institutional donations will launch following 501(c)(3) approval, targeted for 2026. Until then, support flows through GitHub Sponsors above.</p>
+    </section>
   </Container>
 </PageLayout>
