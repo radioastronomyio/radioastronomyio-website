@@ -9,52 +9,29 @@ Entry point for AI coding agents working on this repository.
 **Live:** https://radioastronomy.io
 **Purpose:** Public website for the radioastronomyio GitHub organization. Showcases computational astronomy research projects, infrastructure documentation, governance practices, and the organization's open-science approach. Deployed on Azure Static Web Apps.
 
-**Stack (current, v1):** HTML5, CSS3, JavaScript (vanilla), Azure Static Web Apps, GitHub Actions CI/CD
-**Stack (v2, in progress):** Astro, Tailwind CSS, TypeScript, Azure Static Web Apps
+**Stack:** Astro, Tailwind CSS, TypeScript, Azure Static Web Apps, GitHub Actions CI/CD
+**Legacy stack (v1, archived):** HTML5, CSS3, JavaScript (vanilla)
 
 ## Current State
 
-**Phase:** V2 refresh in progress; v1 site remains live during development
+**Phase:** V2 live — cutover complete
 **Date:** April 2026
 
 ### What Exists
 
-- **V1 site (live):** 9 pages under `src/` (index, research, infrastructure, 6 repo pages), vanilla HTML/CSS/JS, deployed to Azure SWA from `main`
-- **V1 spec-driven build:** entire v1 site built from `docs/website-reference.md` using Antigravity AI agent in ~90 minutes
-- **CI/CD:** GitHub Actions workflow deploys `src/` to Azure Static Web Apps on push to main
+- **V2 site (live):** 14 pages under `src/` built with Astro + Tailwind + TypeScript, deployed to Azure SWA from `main`
+- **CI/CD:** GitHub Actions workflow runs `npm ci && npm run build` in `src/`, deploys `src/dist/` to Azure Static Web Apps
 - **Custom domain:** radioastronomy.io via Cloudflare DNS with CNAME flattening
 - **Visual identity:** all graphics created with Nano Banana 3 for style consistency
-
-### V2 Refresh (in progress)
-
-The v2 refresh is spec-driven and runs through four Codex-executed specs in `spec/`:
-
-- `v2-00-foundation.md` — Astro/Tailwind/TypeScript scaffolding, design tokens, component library, asset migration
-- `v2-01-marketing.md` — Home, About, Sponsors pages
-- `v2-02-research.md` — Research overview and 7 project pages
-- `v2-03-infrastructure-cutover.md` — Infrastructure page, SEO/accessibility polish, cutover from v1 to v2 (two-phase, Phase B requires explicit user approval)
-
-While the refresh is in progress, `src/` remains the deployed site. V2 lives under `site-v2/` until cutover. Cutover will rename `src/` → `legacy-v1/` and promote `site-v2/` → `src/`.
+- **Legacy redirects:** `staticwebapp.config.json` maps old `repos/*.html` URLs to new `/projects/<slug>` routes
 
 ## Architecture
 
-**V1 (live):** Static site with no build step. Azure SWA serves files directly from `src/`.
-
-**V2 (in progress):** Astro site under `site-v2/`. Builds to `site-v2/dist/` via `npm run build`. Azure SWA serves the build output after cutover.
+**V2 (live):** Astro site under `src/`. Builds to `src/dist/` via `npm run build`. Azure SWA serves the build output.
+**V1 (archived):** Static site preserved under `legacy-v1/` for reference. No longer deployed.
 
 ```
-src/                        → v1 (live) - Deployed to Azure Static Web Apps
-├── index.html              → Landing page
-├── research.html           → Research overview
-├── infrastructure.html     → Infrastructure overview
-├── repos/                  → 6 repository detail pages
-├── css/styles.css          → Stylesheet with CSS custom properties
-├── js/main.js              → Navigation, scroll effects, counters, lightbox
-├── assets/                 → Site images
-├── sitemap.xml
-└── staticwebapp.config.json → Caching, headers, routing
-
-site-v2/                    → v2 (in progress) - Astro + Tailwind + TypeScript
+src/                        → v2 (live) - Astro + Tailwind + TypeScript
 ├── astro.config.mjs
 ├── tailwind.config.mjs
 ├── tsconfig.json
@@ -64,8 +41,19 @@ site-v2/                    → v2 (in progress) - Astro + Tailwind + TypeScript
 │   ├── content/            → Content collections (sponsors, projects)
 │   ├── layouts/            → PageLayout, ProjectPageLayout
 │   └── pages/              → Routes
-└── public/
-    └── images/             → Assets (sponsors, projects, founder, heroes, og, logo)
+├── public/
+│   └── images/             → Assets (sponsors, projects, founder, heroes, og, logo)
+└── staticwebapp.config.json → Caching, headers, routing, legacy redirects
+
+legacy-v1/                  → v1 (archived) - Original vanilla HTML/CSS/JS site
+├── index.html
+├── research.html
+├── infrastructure.html
+├── repos/                  → 6 repository detail pages
+├── css/styles.css
+├── js/main.js
+├── assets/
+└── staticwebapp.config.json
 ```
 
 ## Key Constraints
@@ -75,7 +63,6 @@ site-v2/                    → v2 (in progress) - Astro + Tailwind + TypeScript
 - **Org framing.** RadioAstronomy.io is founder-led (Don Fountain) with volunteer contributors. It is NOT a "six-person team," NOT an employer, and public copy does not describe it with formalized team language. Contributors are not named on the public site unless explicitly added to a future content collection.
 - **Separation of hats.** Don's professional work (systems engineering for high-compliance environments) is distinct from RadioAstronomy.io (citizen science research). The site describes what the org does and mentions the founder's background briefly with a link to donaldfountain.ai. The site does NOT describe RadioAstronomy.io operations in terms of Don's professional compliance work.
 - **V1 site immutable during v2 refresh.** Do not modify anything under `src/` until Spec 03 Phase B cutover.
-- **Azure SWA free tier.** 100 GB bandwidth/month, 250 MB storage, 2 custom domains.
 - **Spec as source of truth.** `docs/website-reference.md` defines v1 content. `spec/v2-*.md` files define v2 content and structure.
 
 ## Organization Context
@@ -112,8 +99,8 @@ radioastronomyio-website/
 ├── internal-files/                 # Working documents (gitignored)
 ├── shared/                         # Cross-project utilities
 ├── spec/                           # Specifications (v2-00 through v2-03)
-├── src/                            # v1 live site content
-├── site-v2/                        # v2 Astro project (during refresh only)
+├── src/                            # v2 (live) - Astro + Tailwind + TypeScript
+├── legacy-v1/                      # v1 (archived) - Original vanilla HTML/CSS/JS site
 ├── staging/                        # Staged work (gitignored)
 ├── work-logs/                      # Development history
 ├── AGENTS.md                       # This file
@@ -129,7 +116,7 @@ radioastronomyio-website/
 - **Frontmatter:** YAML frontmatter with tags from `docs/documentation-standards/tagging-strategy.md`
 - **Interior READMEs:** Every directory has one
 - **V1 CSS:** Uses custom properties for theming; style guide in the website spec
-- **V2 styling:** Tailwind utility classes with design tokens in `site-v2/tailwind.config.mjs`
+- **V2 styling:** Tailwind utility classes with design tokens in `src/tailwind.config.mjs`
 - **No PRs from agents.** Codex-executed specs commit to feature branches; user reviews and merges manually.
 
 ## V2 Cutover Plan
@@ -138,8 +125,6 @@ Handled by Spec 03, two-phase:
 
 - **Phase A (auto):** Infrastructure page, sitemap, SEO polish, accessibility audit. Codex completes, commits, stops.
 - **Phase B (manual approval):** Directory rename (`src/` → `legacy-v1/`, `site-v2/` → `src/`), workflow update, `staticwebapp.config.json` move, redirects for legacy URLs, README/AGENTS updates. Executes only after user explicit go-ahead.
-
-## Related Repositories
 
 | Repository | Relationship |
 |-----------|-------------|

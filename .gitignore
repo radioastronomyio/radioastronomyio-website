@@ -1,5 +1,5 @@
 # ============================================================================
-# .gitignore for RadioAstronomy.io Website (Static HTML/CSS/JS)
+# .gitignore for RadioAstronomy.io Website (Astro + Tailwind + TypeScript)
 # ============================================================================
 
 # ----------------------------------------------------------------------------
@@ -60,13 +60,14 @@ desktop.ini
 # ----------------------------------------------------------------------------
 node_modules/
 package-lock.json
-!site-v2/package-lock.json
+!src/package-lock.json
 yarn.lock
 
 # ----------------------------------------------------------------------------
-# ASTRO V2 BUILD OUTPUT
+# ASTRO BUILD OUTPUT
 # ----------------------------------------------------------------------------
-site-v2/dist/
+src/dist/
+src/.astro/
 
 # ----------------------------------------------------------------------------
 # LARGE FILES
@@ -89,4 +90,3 @@ scratch/
 local/
 .local/
 *.local
-site-v2/.astro/

@@ -1,0 +1,61 @@
+{
+  "navigationFallback": {
+    "rewrite": "/404.html",
+    "exclude": ["/images/*", "/_astro/*", "*.xml", "*.txt", "*.json"]
+  },
+  "routes": [
+    {
+      "route": "/images/*",
+      "headers": {
+        "Cache-Control": "public, max-age=604800, immutable"
+      }
+    },
+    {
+      "route": "/_astro/*",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "route": "/repos/desi-cosmic-void-galaxies.html",
+      "rewrite": "/projects/desi-cosmic-void-galaxies"
+    },
+    {
+      "route": "/repos/desi-quasar-outflows.html",
+      "rewrite": "/projects/desi-quasar-outflows"
+    },
+    {
+      "route": "/repos/desi-qso-anomaly-detection.html",
+      "rewrite": "/projects/desi-qso-anomaly-detection"
+    },
+    {
+      "route": "/repos/rbh1-validation.html",
+      "rewrite": "/projects/rbh1-validation"
+    },
+    {
+      "route": "/repos/proxmox-astronomy-lab.html",
+      "rewrite": "/projects/proxmox-astronomy-lab"
+    },
+    {
+      "route": "/repos/year-of-code-2026.html",
+      "rewrite": "/"
+    },
+    {
+      "route": "/research.html",
+      "rewrite": "/research"
+    },
+    {
+      "route": "/infrastructure.html",
+      "rewrite": "/infrastructure"
+    }
+  ],
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "mimeTypes": {
+    ".json": "application/json",
+    ".xml": "application/xml"
+  }
+}
