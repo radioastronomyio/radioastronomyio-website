@@ -7,11 +7,13 @@ import CTABand from '../components/CTABand.astro';
 import { getCollection } from 'astro:content';
 
 const sponsors = (await getCollection('sponsors')).sort((a, b) => a.data.order - b.data.order);
+const sponsorNames = sponsors.map((sponsor) => sponsor.data.name);
+const sponsorDescription = `RadioAstronomy.io is supported by open-source sponsorship programs from ${sponsorNames.slice(0, -1).join(', ')}, and ${sponsorNames.at(-1)}. We also make cluster compute time available to astronomy students.`;
 ---
 
 <PageLayout
   title="Sponsors & Community | RadioAstronomy.io"
-  description="RadioAstronomy.io is supported by open-source sponsorship programs from Atlassian, CodeRabbit, DeepInfra, Greptile, Macroscope, Sentry, and Snyk. We also make cluster compute time available to astronomy students."
+  description={sponsorDescription}
   ogImage="/images/og/sponsors.png"
 >
   <Hero

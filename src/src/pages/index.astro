@@ -36,7 +36,7 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <Hero
-    title="Research lab as code"
+    title="Computational Astronomy as Code"
     subtitle="Open-science computational astronomy built to be reproduced. We pursue discovery-oriented research on DESI, Rubin/LSST, and COSMOS-Web surveys. The infrastructure, methodology, governance, and datasets are all published so others can use or extend them."
     primaryCta={{ label: 'Explore the Research', href: '/research' }}
     secondaryCta={{ label: 'Support Our Work', href: '/sponsors' }}
@@ -85,21 +85,18 @@ const jsonLd = {
 
     <section class="py-16">
       <h2 class="text-2xl font-bold text-center mb-10">Supported by</h2>
-      <div class="flex flex-wrap justify-center items-center gap-8">
+      <div class="flex flex-wrap justify-center items-center gap-6">
         {sponsors.map((sponsor) => (
           <a
             href={sponsor.data.url}
             target="_blank"
             rel="noopener"
-            class="group relative"
+            class="group relative bg-gray-100 dark:bg-white/15 rounded-lg px-4 py-2 hover:bg-gray-200 dark:hover:bg-white/25 transition-colors"
           >
             <img
               src={sponsor.data.logo}
               alt={sponsor.data.name}
-              class:list={[
-                'h-10 max-w-[120px] object-contain opacity-70 hover:opacity-100 transition-opacity',
-                sponsor.data.logo.includes('macroscope') ? 'invert' : '',
-              ]}
+              class="h-8 max-w-[120px] object-contain opacity-80 group-hover:opacity-100 transition-opacity dark:brightness-0 dark:invert"
             />
             <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-brand-navy dark:bg-dark-surface text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
               {sponsor.data.name}

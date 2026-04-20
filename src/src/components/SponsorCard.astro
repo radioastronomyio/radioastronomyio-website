@@ -6,36 +6,24 @@ interface Props {
   provides: string;
 }
 
-const { name, logo, provides } = Astro.props;
+const { name, logo, url, provides } = Astro.props;
 
-const isWhiteLogo = logo.includes('macroscope');
-const isDarkLogo = logo.includes('snyk');
+// AI NOTE: Sponsor logos are mixed SVG/PNG assets with different source colors.
+// Keep the neutral logo well and dark-mode filter together so new sponsors do
+// not need one-off component branches or invisible light/dark-mode logos.
 ---
 
 <a
-  href={Astro.props.url}
+  href={url}
   target="_blank"
   rel="noopener"
-  class:list={[
-    'group block p-6 rounded-xl border transition-shadow hover:shadow-lg',
-    isWhiteLogo
-      ? 'bg-brand-navy dark:bg-dark-bg border-brand-navy dark:border-dark-surface'
-      : isDarkLogo
-        ? 'bg-white dark:bg-dark-surface border-brand-grid dark:border-brand-navy'
-        : 'bg-white dark:bg-dark-surface border-brand-grid dark:border-brand-navy',
-  ]}
+  class="group block p-6 rounded-xl border bg-white dark:bg-dark-surface border-brand-grid dark:border-brand-navy transition-shadow hover:shadow-lg"
 >
-  <div class:list={[
-    'h-12 flex items-center mb-4',
-    isWhiteLogo ? 'justify-center' : '',
-  ]}>
+  <div class="h-14 flex items-center mb-4 bg-gray-100 dark:bg-white/15 rounded-lg px-4">
     <img
       src={logo}
       alt={`${name} logo`}
-      class:list={[
-        'max-h-10 max-w-[140px] object-contain',
-        isWhiteLogo ? 'brightness-0 invert' : '',
-      ]}
+      class="max-h-8 max-w-[160px] object-contain dark:brightness-0 dark:invert"
     />
   </div>
   <h3 class="font-semibold mb-1 group-hover:text-brand-steel transition-colors">{name}</h3>
